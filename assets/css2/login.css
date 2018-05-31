@@ -1,0 +1,95 @@
+#frame {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    padding-top: 130px;
+    box-sizing: border-box;
+}
+
+.logo {
+    position: absolute;
+    left: 353px;
+    top: 29px;
+}
+
+.content {
+    width: 280px;
+    margin: 0 auto;
+    /* margin-top: 130px; */
+}
+
+.title {
+    margin: 0px auto 36px;
+    color: rgba(0,0,0,.87);
+    font-size:18px;
+    text-align: center;
+}
+
+.inputFrame {
+    position: relative;
+}
+
+.inputFrame input {
+    width: 280px;
+    height: 40px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,.26);
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.inputFrame input:first-child { margin-bottom: 16px; }
+
+.inputFrame input:last-child { margin-bottom: 8px; }
+
+.passwordIcon { 
+    position: absolute;
+    right: 9px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.toolBar {
+    width: 280px;
+    height: 32px;
+    line-height: 32px;
+    /* padding: 0 10px; */
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.toolBar span {
+    margin-left: 15px;
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+    cursor: pointer;
+}
+
+.toolBar a:link, .toolBar a:active, .toolBar a:visited, .toolBar a:active {
+    color: rgba(0,0,0,.54);
+}
+
+.submitButton {
+    width: 280px;
+    height: 40px;
+    line-height: 40px;
+    background: #2196f3;
+    border-radius: 2px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 190px;
+}
+
+.submitButton:active {
+    background: #2196f3;
+}
+
+.footer {
+    color: rgba(0,0,0,.38);
+    font-size: 12px;
+    text-align: center;
+}

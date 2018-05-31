@@ -1,0 +1,49 @@
+#frame {
+    width: 100%;
+    height: 100%;
+    padding-top: 130px;
+    box-sizing: border-box;
+}
+
+.logo {
+    position: absolute;
+    left: 353px;
+    top: 29px;
+}
+
+.content {
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.content > img {
+    width: 98px;
+    height: 98px;
+}
+
+.content > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 143px;
+    height: 48px;
+}
+
+.content > div > img {
+    margin-right: 28px;
+}
+
+.changePassword {
+    color: #2196f3;
+}
+
+.loginOut {
+    color: rgba(244,67,54,.87);
+}
+
+.title {
+    justify-content: center;
+}
