@@ -9,6 +9,7 @@ import Login from './components/login/login'
 import Register from './components/register/register'
 import Person from './components/person/person'
 import Password from './components/password/password'
+import Download from './components/download/download'
 import css from 'Css/index.css'
 import store from './store/store'
 import Action from './action/action'
@@ -33,11 +34,12 @@ class App extends React.Component {
     return (
       <div className='index-wrap'>
         <Switch>
-        <Route exact path='/' component={Home}/>
+          <Route exact path='/' component={Home}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/person' component={Person}/>
-          <Route exact path='/Password' component={Password}/>
+          <Route exact path='/password' component={Password}/>
+          <Route exact path='/download' component={Download}/>
           <Route component={NoMatch}/>
         </Switch>
       </div>

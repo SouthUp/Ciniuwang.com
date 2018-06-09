@@ -1,0 +1,90 @@
+.top {
+    width: 100%;
+    height: 500px;
+    background-image: linear-gradient(30deg, #3f4cfd, #2196f3);
+    position: relative;
+}
+
+.logoFrame {
+    width: 392px;
+    height: 391px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-196px);
+}
+
+.midLogo {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-78px);
+}
+
+.title {
+    width: 100%;
+    font-size: 48px;
+    font-weight: 500;
+    color: #fff;
+    position: absolute;
+    bottom: 136px;
+    text-align: center;
+}
+
+.cards {
+    max-width: 1280px;
+    position: relative;
+    top: -56px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 420px;
+    height: 181px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.08);
+    padding: 39px 0 0 82px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    position: relative;
+}
+
+.card img {
+    position: absolute;
+    left: 24px;
+    top: 51px;
+}
+
+.card .name {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.87)
+}
+
+.card .version {
+    font-size: 14px;
+    color: #0078d7;
+}
+
+.card .time {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54)
+}
+
+.card .download {
+    position: absolute;
+    bottom: 24px;
+    width: 78px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    background-color: #00bfa5;
+    cursor: pointer;
+}
