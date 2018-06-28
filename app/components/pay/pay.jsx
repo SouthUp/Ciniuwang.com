@@ -5,14 +5,13 @@ import store from '../../store/store'
 import Action from '../../action/action'
 import css from 'Css2/pay'
 import common from 'Css2/common'
-import Snackbar from '../common/snackbar'
-import action from '../../action/action'
 
 class Pay extends React.Component {
   constructor() {
     super()
     this.state = {
-      pointIndex : 0
+      pointIndex : -1,
+      price: 0
     }
   }
 
@@ -30,7 +29,7 @@ class Pay extends React.Component {
 
   render() {
     let { width, height } = this.props.view
-    let frameStyle = { width, height, backgroundImage: `url(${require('Image2/0.png')})` }
+    let frameStyle = { width, height}
     let user, isLogin = false
     
     if (this.props.view.user) isLogin = true
@@ -68,7 +67,7 @@ class Pay extends React.Component {
             <div className={css.type}>软件产品</div>
             <div className={css.list}>
               <div className={css['list-row']}>
-                <input type="radio" name="vip" id="" checked />
+                <input type="radio" name="vip" id="" checked value='Vip' onChange={this.selectVip.bind(this, 'Vip')}/>
                 <span>词牛违禁词软件</span>
                 <span>{vip?'已购买':1000/年}</span>
               </div>
@@ -79,24 +78,67 @@ class Pay extends React.Component {
           <div >
             <div className={css.type + ' ' + css['height-type']}>充值点数</div>
             <div className={css['point-select-frame']}>
-              {pointList.map(item => {
+              {pointList.map((item, index) => {
                 return (
-                  <div>123</div>
+                  <div onClick={this.select.bind(this, index)} className={css['select-colume']}
+                    id={this.state.pointIndex == index?css.selected:''} key={index}>
+                    <img style={this.state.index == index?{}:{display:'none'}} src={require('Image2/105.png')} />
+                    <span>{item.price} 元</span>
+                    <span>{item.count} 点</span>
+                  </div>
                 )
               })}
             </div>
           </div>
           <div >
             <div className={css.type}>支付方式</div>
-            <div></div>
+            <div className={css['pay-list']}>
+              {payWayList.map((item, index) => {
+                return (
+                  <div className={css['pay-colume']} key={index}>
+                    <img src={item.url} alt=""/>
+                    <span>{item.name}</span>
+                  </div>
+                )
+              })}
+            </div>
           </div>
           <div >
             <div className={css.type}>结算总价</div>
-            <div></div>
+            <div className={css.price}>{this.state.price} 元</div>
+          </div>
+          <div style={{marginTop: '25px'}}>
+            <div className={css.type}></div>
+            <div className={css.next}>下一步</div>
           </div>
         </div>
       </div>
     )
+  }
+
+  select(pointIndex) {
+    if (pointIndex == this.state.pointIndex) this.setState({pointIndex: -1})
+    else this.setState({pointIndex}, () => {
+      let price = this.countPrice()
+      console.log(this.state)
+      this.setState({price})
+    })
+    
+
+    
+  }
+
+  selectVip(type) {
+    console.log(type)
+  }
+
+  countPrice() {
+    let { pointIndex } = this.state
+    let pointPrice = 0
+    console.log(pointIndex)
+    if (pointIndex !== -1) pointPrice += pointList[pointIndex].price
+
+    return pointPrice
   }
 }
 
@@ -106,6 +148,10 @@ const pointList = [
   {price: 180, count: '20,000'},
   {price: 350, count: '40,000'},
   {price: 1000, count: '120,000'},
+]
+
+const payWayList = [
+  {url: require('Image2/101.png'), name: '支付宝'}
 ]
 
 var mapStateToProps = state => {
