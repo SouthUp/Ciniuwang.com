@@ -1,0 +1,87 @@
+.content {
+    font-size: 16px;
+    width: 960px;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    top: 80px;
+    padding-top: 72px;
+    margin-left: -480px;
+    border: 1px solid red;
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: right
+    /* align-items: center; */
+}
+
+.content > div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.type {
+    margin-left: 165px;
+    margin-right: 58px;
+    width: 64px;
+    height: 48px;
+    line-height: 48px;
+    color: (0, 0, 0, .87);
+    font-weight: bold;
+}
+
+.height-type {
+    height: 68px;
+    line-height: 68px;
+}
+
+
+
+.username {
+    color: #2396f3;
+}
+
+.list {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 670px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .87)
+}
+
+.list input[type=radio] {
+    margin-right: 9px;
+}
+
+.list-row {
+    height: 48px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.list-row span:nth-child(2) {
+    margin-right: 189px;
+}
+
+.list-row span:nth-child(3) {
+    color: #00bfa5;
+}
+
+.line {
+    height: 2px;
+    background: rgba(0, 0, 0, .12)
+}
+
+.remain-point {
+    height: 48px;
+    line-height: 48px;
+    color: #00bfa5;
+    text-align: left;
+}
+
+.point-select-frame {
+    height: 68px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}

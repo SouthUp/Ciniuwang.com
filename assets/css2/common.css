@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+.now {
+    font-size: 16px!important;
+}
+
 #nav ul li a:link {
     color: rgba(255, 255, 255, .87);
 }

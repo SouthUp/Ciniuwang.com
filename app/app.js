@@ -10,6 +10,7 @@ import Register from './components/register/register'
 import Person from './components/person/person'
 import Password from './components/password/password'
 import Download from './components/download/download'
+import Pay from './components/pay/pay'
 import css from 'Css/index.css'
 import store from './store/store'
 import Action from './action/action'
@@ -40,6 +41,7 @@ class App extends React.Component {
           <Route exact path='/person' component={Person}/>
           <Route exact path='/password' component={Password}/>
           <Route exact path='/download' component={Download}/>
+          <Route exact path='/pay' component={Pay}/>
           <Route component={NoMatch}/>
         </Switch>
       </div>

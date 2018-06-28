@@ -25,9 +25,7 @@ class Home extends React.Component {
     let { width, height } = this.props.view
     let contentStyle = { width, height, backgroundImage: `url(${require('Image2/hero.png')})` }
     let isLogin = false
-    if (this.props.view.user) {
-      isLogin = true
-    }
+    if (this.props.view.user) isLogin = true
     return (
       <div>
         <div id={common.nav}>
@@ -35,7 +33,7 @@ class Home extends React.Component {
           <ul>
             <li><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>
-            <li><Link to='/'>购买产品</Link></li>
+            <li><Link to='/pay'>购买产品</Link></li>
             <li><Link to='/'>公司介绍</Link></li>
             {isLogin ?
               <li><Link to='/person'>个人中心</Link></li> :

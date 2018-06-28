@@ -80,10 +80,16 @@ class Login extends React.Component {
       success: (res) => {
         console.log(res)
         store.dispatch(action.setUser(res))
-        // setTimeout(() => {
-        //   window.location.href = '/home'
-        // }, 1000)
-        this.props.history.push('/person')
+        
+        
+
+        console.log()
+        if (window.location.search.indexOf('pay') !== -1) {
+          this.props.history.push('/pay')
+        } else {
+          this.props.history.push('/person')
+        }
+
       },
       error: err => {
         console.log(err)
