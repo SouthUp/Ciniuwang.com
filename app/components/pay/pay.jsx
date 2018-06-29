@@ -194,16 +194,12 @@ class Pay extends React.Component {
       dataType: 'json',
       data: { types, pointIndex },
       success: (res) => {
-        console.log('.a..')
         console.log(res)
       },
       error: err => {
-        console.log('....')
         console.log(err)
         this.setState({
-          text: err.responseJSON.message?
-            err.responseJSON.message.split('[')[0]:
-            err.responseJSON.rawMessage.split('[')[0]
+          text: err.message
         })
       }
     })
