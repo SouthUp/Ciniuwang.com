@@ -5,13 +5,17 @@ import store from '../../store/store'
 import Action from '../../action/action'
 import css from 'Css2/pay'
 import common from 'Css2/common'
+import Snackbar from '../common/snackbar'
+var $ = require('jquery')
 
 class Pay extends React.Component {
   constructor() {
     super()
     this.state = {
       pointIndex : -1,
-      price: 0
+      types: [],
+      price: 0,
+      text: ''
     }
   }
 
@@ -40,6 +44,7 @@ class Pay extends React.Component {
     let vip = user.roles.find(item => item.roleName == 'Vip')
     return (
       <div id={css.frame} style={frameStyle}>
+        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
         <div id={common.nav} style={{backgroundImage: 'linear-gradient(30deg, #3f4cfd, #2196f3)'}}>
           <img src={require('Image2/logo-1.png')} alt="" />
           <ul>
@@ -66,11 +71,20 @@ class Pay extends React.Component {
           <div >
             <div className={css.type}>软件产品</div>
             <div className={css.list}>
-              <div className={css['list-row']}>
-                <input type="radio" name="vip" id="" checked value='Vip' onChange={this.selectVip.bind(this, 'Vip')}/>
-                <span>词牛违禁词软件</span>
-                <span>{vip?'已购买':1000/年}</span>
-              </div>
+              {typeList.map((item, index) => {
+                  let isCurrentVip = user.roles.find(role => role.roleName == item.roleName)?true:false
+                  let name = item.roleName
+                  let isChecked = this.state.types.find(checked => item.roleName == checked)?true:false
+                  return (
+                    <div className={css['list-row']} key={item.roleName}>
+                      <input type="radio" name={name} value={name} 
+                        checked={isCurrentVip || isChecked?true:null}
+                        onClick={this.selectVip.bind(this, item.roleName)}/>
+                      <span>{item.name}</span>
+                      <span>{isCurrentVip?'已购买':item.price + '/年'}</span>
+                  </div>
+                  )
+              })}
               <div className={css.line}></div>
               <div className={css['remain-point']}>剩余点数：{user.point}</div>
             </div>
@@ -109,36 +123,90 @@ class Pay extends React.Component {
           </div>
           <div style={{marginTop: '25px'}}>
             <div className={css.type}></div>
-            <div className={css.next}>下一步</div>
+            <div className={css.next} onClick={this.pay.bind(this)}>下一步</div>
           </div>
         </div>
       </div>
     )
   }
 
-  select(pointIndex) {
-    if (pointIndex == this.state.pointIndex) this.setState({pointIndex: -1})
-    else this.setState({pointIndex}, () => {
-      let price = this.countPrice()
-      console.log(this.state)
-      this.setState({price})
-    })
-    
+  clearText() {
+    this.setState({text: ''})
+  }
 
-    
+  select(pointIndex) {
+    if (pointIndex == this.state.pointIndex) {
+      this.setState({pointIndex: -1}, () => {
+        this.countPrice()  
+      })
+    }
+    else this.setState({pointIndex}, () => {
+      this.countPrice()
+    })
   }
 
   selectVip(type) {
-    console.log(type)
+    let isCurrentVip = this.props.view.user.roles.find(role => role.roleName == type)
+    if (isCurrentVip) return
+    let { types } = this.state
+    let exist = types.findIndex(item => item == type)
+    if (exist == -1) {
+      this.setState({types: [...types, type]}, () => {
+        this.countPrice()
+      })
+    }
+    else {
+      types.splice(exist,1)
+      this.setState({types}, () => {
+        this.countPrice()
+      })
+    }
   }
 
   countPrice() {
-    let { pointIndex } = this.state
+    let { pointIndex, types } = this.state
     let pointPrice = 0
-    console.log(pointIndex)
     if (pointIndex !== -1) pointPrice += pointList[pointIndex].price
 
+    types.forEach(type => {
+      let isCurrentVip = this.props.view.user.roles.find(role => role.roleName == type)
+      let row = typeList.find(item => item.roleName == type)
+      if (!isCurrentVip && row) {
+        pointPrice += row.price
+      }
+    })
+    
+    this.setState({price: pointPrice})
     return pointPrice
+  }
+
+  pay() {
+    let { username, roles } = this.props.view.user
+    let { pointIndex, types } = this.state
+    console.log(roles, types)
+    if (!username) return this.setState({text: '请登录'})
+    if (roles.length == 0 && types.length == 0) return this.setState({text: '请选择软件产品'})
+    let price = this.countPrice()
+    console.log(price)
+    $.ajax({
+      type: 'POST',
+      url: 'http://ciniu.leanapp.cn/pay',
+      dataType: 'json',
+      data: { types, pointIndex },
+      success: (res) => {
+        console.log('.a..')
+        console.log(res)
+      },
+      error: err => {
+        console.log('....')
+        console.log(err)
+        this.setState({
+          text: err.responseJSON.message?
+            err.responseJSON.message.split('[')[0]:
+            err.responseJSON.rawMessage.split('[')[0]
+        })
+      }
+    })
   }
 }
 
@@ -152,6 +220,10 @@ const pointList = [
 
 const payWayList = [
   {url: require('Image2/101.png'), name: '支付宝'}
+]
+
+const typeList = [
+  { name: '词牛违禁词软件', roleName: 'Vip', price: 1000}
 ]
 
 var mapStateToProps = state => {

@@ -6,7 +6,6 @@ import Action from '../../action/action'
 import css from 'Css2/login'
 import Snackbar from '../common/snackbar'
 import action from '../../action/action';
-// import $ from 'jquery'
 var $ = require('jquery')
 
 class Login extends React.Component {
@@ -78,12 +77,8 @@ class Login extends React.Component {
       dataType: 'json',
       data: { username, password },
       success: (res) => {
-        console.log(res)
         store.dispatch(action.setUser(res))
         
-        
-
-        console.log()
         if (window.location.search.indexOf('pay') !== -1) {
           this.props.history.push('/pay')
         } else {
