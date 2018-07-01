@@ -257,7 +257,7 @@ class Pay extends React.Component {
       data: send_data,
       success: (res) => {
         // console.log(res.url)
-        window.open(res.url, '_blank', 'width=1200,height=800')
+        window.open(res.url, '_blank')
         this.setState({'id': res.result.objectId}, () => {
           this.createPulling()
         })
