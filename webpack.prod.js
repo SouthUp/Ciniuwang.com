@@ -28,7 +28,9 @@ console.log(path.join(__dirname, 'public'))
   resolve: {
     alias: {
       Image: path.resolve(__dirname, 'assets/images'),
+      Image2: path.resolve(__dirname, 'assets/images2'),
       Css: path.resolve(__dirname, 'assets/css'),
+      Css2: path.resolve(__dirname, 'assets/css2'),
       Video: path.resolve(__dirname, 'assets/videos'),
       Font: path.resolve(__dirname, 'assets/fonts'),
     },

@@ -6,6 +6,7 @@ import Action from '../../action/action'
 import css from 'Css2/pay'
 import common from 'Css2/common'
 import Snackbar from '../common/snackbar'
+import { create } from 'domain';
 var $ = require('jquery')
 
 class Pay extends React.Component {
@@ -15,12 +16,22 @@ class Pay extends React.Component {
       pointIndex : -1,
       types: [],
       price: 0,
-      text: ''
+      pointPrice: 0,
+      servePrice: 0,
+      text: '',
+      step: 0,
+      trade: null,
+      id: '',
+      complete: false
     }
   }
 
   componentWillMount() {
     if (!this.props.view.user) this.props.history.push('/login?from=pay')
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.pulling)
   }
 
   componentDidMount() {
@@ -42,6 +53,20 @@ class Pay extends React.Component {
     user = this.props.view.user
     if (!user.point) user.point = 0
     let vip = user.roles.find(item => item.roleName == 'Vip')
+    let typeObjs = []
+    this.state.types.forEach(item => {
+      let result = typeList.find(item2 => item2.roleName == item)
+      if (result) typeObjs.push(result)
+    })
+
+    let payButtonMessage = '立即支付'
+    if (this.state.id) {
+      payButtonMessage = '等待支付...'
+    }
+
+    if (this.state.complete) {
+      payButtonMessage = '充值成功'
+    }
     return (
       <div id={css.frame} style={frameStyle}>
         <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
@@ -63,7 +88,8 @@ class Pay extends React.Component {
 
           </ul>
         </div>
-        <div className={css.content}>
+        {this.state.step == 0? (
+          <div className={css.content}>
           <div >
             <div className={css.type}>账户</div>
             <div className={css.username}>{user.username}</div>
@@ -123,9 +149,37 @@ class Pay extends React.Component {
           </div>
           <div style={{marginTop: '25px'}}>
             <div className={css.type}></div>
-            <div className={css.next} onClick={this.pay.bind(this)}>下一步</div>
+            <div className={css.next} onClick={this.next.bind(this)}>下一步</div>
           </div>
         </div>
+        ): (
+          <div className={css.tradeContent}>
+            <div className={css.payLine}></div>
+            <div className={css.tradeTitle}>确认订单</div>
+            <div className={css.tradeUsername}>{user.username}</div>
+            <div className={css.productName}>词牛违禁词检索软件</div>
+
+            <div className={css.productList}>
+              <div className={css.productRow}>
+                <span>年服务费</span>
+                <span>{this.state.servePrice} 元</span>
+              </div>
+              <div className={css.productRow}>
+                <span>充值点数</span>
+                <span>{this.state.pointPrice} 元</span>
+              </div>
+            </div>
+
+            <div className={css.allPrice}>
+              <span>总价：</span>
+              <span>{this.state.price} 元</span>
+            </div>
+            
+            <div className={css.payButton} onClick={this.pay.bind(this)}>{payButtonMessage}</div>
+
+          </div>
+        )}
+        
       </div>
     )
   }
@@ -166,35 +220,50 @@ class Pay extends React.Component {
   countPrice() {
     let { pointIndex, types } = this.state
     let pointPrice = 0
+    let servePrice = 0
+
+    //点数费用
     if (pointIndex !== -1) pointPrice += pointList[pointIndex].price
 
     types.forEach(type => {
       let isCurrentVip = this.props.view.user.roles.find(role => role.roleName == type)
       let row = typeList.find(item => item.roleName == type)
       if (!isCurrentVip && row) {
-        pointPrice += row.price
+        servePrice += row.price
       }
     })
     
-    this.setState({price: pointPrice})
-    return pointPrice
+    this.setState({price: pointPrice + servePrice, pointPrice, servePrice})
+  }
+
+  next() {
+    this.setState({step: 1})
   }
 
   pay() {
-    let { username, roles } = this.props.view.user
+    
+    let { username, roles, sessionToken } = this.props.view.user
     let { pointIndex, types } = this.state
-    console.log(roles, types)
+    
     if (!username) return this.setState({text: '请登录'})
     if (roles.length == 0 && types.length == 0) return this.setState({text: '请选择软件产品'})
-    let price = this.countPrice()
-    console.log(price)
+    
+    let send_data = { types, pointIndex }
     $.ajax({
       type: 'POST',
       url: 'http://ciniu.leanapp.cn/pay',
+      headers: {'X-LC-Session': sessionToken},
       dataType: 'json',
-      data: { types, pointIndex },
+      data: send_data,
       success: (res) => {
-        console.log(res)
+        // console.log(res.url)
+        window.open(res.url, '_blank', 'width=1200,height=800')
+        this.setState({'id': res.result.objectId}, () => {
+          this.createPulling()
+        })
+        
+
+
       },
       error: err => {
         console.log(err)
@@ -203,6 +272,36 @@ class Pay extends React.Component {
         })
       }
     })
+  }
+
+  createPulling() {
+    let { sessionToken } = this.props.view.user
+    let { id } = this.state
+    if (!id) return clearInterval(this.pulling)
+    this.pulling = setInterval(() => {
+      // console.log('in pulling', id)
+      $.ajax({
+        type: 'get',
+        url: 'http://ciniu.leanapp.cn/pay/trade?id=' + id,
+        headers: {'X-LC-Session': sessionToken},
+        success: res => {
+          let obj = { trade: res}
+          // console.log(res)
+          if (res.code == '10000' ) {
+            if (res.trade_status == 'TRADE_SUCCESS') {
+              console.log('支付成功')
+              Object.assign(obj, {complete: true})
+              clearInterval(this.pulling)
+            }
+            
+          } else {
+            console.log('支付不成功')
+          }
+          this.setState(obj)
+          
+        }
+      })
+    }, 2000)
   }
 }
 

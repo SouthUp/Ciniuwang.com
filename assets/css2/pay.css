@@ -161,3 +161,97 @@
     cursor: pointer;
     border-radius: 2px;
 }
+
+
+.tradeContent {
+    width: 480px;
+    height: 360px;
+    position: relative;
+    left: 50%;
+    top: 160px;
+    margin-left: -240px;
+    box-shadow: 0px 1px 0.9px 0.1px rgba(0, 0, 0, 0.24), 0 0 1px 0px rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+.tradeContent > * {
+    padding-left: 27px;
+    padding-right: 27px;
+}
+
+/* .payLine {
+    position: absolute;
+    background: #2396f3;
+    width: 3px;
+    height: 56px;
+} */
+
+.tradeTitle {
+    color: rgba(0, 0, 0, .38);
+    height: 56px;
+    line-height: 56px;
+    border-left: 3px solid #2396f3;
+}
+
+.tradeUsername {
+    color: #2196f3;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 9px;
+    margin-bottom: 6px;
+}
+
+.productName {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+}
+
+.productList {
+    padding: 8px 0px;
+    margin: 10px 27px 10px 27px;
+    border-top: 1px solid rgba(0, 0, 0, .12);
+    border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.productRow {
+    height: 40px;
+    line-height: 40px;
+    color: rgba(0, 0, 0, .87);
+    font-size: 14px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.allPrice {
+    text-align: right;
+    /* padding: 0px 30px; */
+}
+
+.allPrice span:first-child {
+    color: rgba(0, 0, 0, .54);
+    font-size: 14px;
+}
+
+.allPrice span:last-child {
+    color: rgba(242, 132, 25, 0.87);    
+    font-size: 21px;
+}
+
+.payButton {
+    width: 90px;
+    height: 39px;
+    line-height: 39px;
+    position: absolute;
+    right: 29px;
+    bottom: 29px;
+    font-size: 14px;
+    text-align: center;
+    background: #00bfa5;
+    color: #fff;
+    padding: 0px;
+    border-radius: 2px;
+    cursor: pointer;
+}

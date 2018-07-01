@@ -8,16 +8,28 @@ import { POINT_CONVERSION_COMPRESSED } from 'constants';
 const cards = [
   {
     logo: require('Image2/97.png'),
-    name: 'test',
+    name: '词牛客户端',
     version: '1.0',
-    time: 'test time'
+    time: '更新时间: 2018-7-1',
+    url: 'http://www.ciniuwang.com/files/词牛.exe',
+
   },
   {
     logo: require('Image2/97.png'),
-    name: 'test',
+    name: 'Word插件',
     version: '1.0',
-    time: 'test time'
+    time: '更新时间: 2018-7-1',
+    url: 'http://www.ciniuwang.com/files/Word插件.zip',
+
   },
+  {
+    logo: require('Image2/97.png'),
+    name: 'Excel插件',
+    version: '1.0',
+    time: '更新时间: 2018-7-1',
+    url: 'http://www.ciniuwang.com/files/Excel插件.zip',
+
+  }
 ]
 
 class Download extends React.Component {
@@ -30,14 +42,15 @@ class Download extends React.Component {
 
   render() {
     let { width, height } = this.props.view
-    let frameStyle = { width, height }
+    let frameStyle = { width, height, background: 'rgb(250, 250, 250)' }
+    console.log(frameStyle)
     let isLogin = false
     if (this.props.view.user) {
       isLogin = true
     }
     return (
-      <div style={frameStyle}>
-        <div id={common.nav}>
+      <div style={frameStyle} >
+        <div id={common.nav} style={{zIndex: 900}}>
           <img src={require('Image2/logo-1.png')} alt="" />
           <ul>
             <li><Link to='/'>产品介绍</Link></li>
@@ -71,12 +84,16 @@ class Download extends React.Component {
                 <div className={css.name}>{item.name}</div>
                 <div className={css.version}>{item.version}</div>
                 <div className={css.time}>{item.time}</div>
-                <div className={css.download}>下载</div>
+                <div className={css.download} onClick={this.download.bind(this,item.url)}>下载</div>
               </div>
             ))}
         </div>
       </div>
     )
+  }
+
+  download(url) {
+    window.open(url, '_blank')
   }
 
 }
