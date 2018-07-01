@@ -27,6 +27,7 @@
     font-size: 14px;
     margin-left: 48px;
     cursor: pointer;
+    color: rgba(255, 255, 255, .87);
 }
 
 .now {
@@ -34,11 +35,11 @@
 }
 
 #nav ul li a:link {
-    color: rgba(255, 255, 255, .87);
+    color: inherit;
 }
 
 #nav ul li a:visited {
-    color: rgba(255, 255, 255, .87);
+    color: inherit;
 }
 
 #nav ul li:nth-child(4) {
@@ -61,3 +62,53 @@
 #nav ul li:last-child span a:visited{
     cursor: pointer;
 }
+
+.beian {
+    color: rgba(44, 50, 65, 0.54);
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -70px;
+}
+
+
+/* support page */
+.supportContent {
+    width: 738px;
+    height: 435px;
+    position: absolute;
+    left: 50%;
+    margin-left: -369px;
+    top: 226px;
+}
+
+.supportContent span {
+    color: #09417f;
+    font-size: 18px;
+    font-weight: 500;
+    position: absolute;
+}
+
+.supportContent span:first-child {
+    left: 284px;
+    top: 100px;
+}
+
+.supportContent span:last-child {
+    left: 286px;
+    top: 147px;
+}
+
+@media screen and (max-width: 1366px) {
+    #nav img { left: 280px;}
+  }
+
+  @media screen and (max-width: 1224px) {
+    #nav img { left: 110px;}
+  }
+
+  @media screen and (max-width: 800px) {
+    #nav img { left: 80px;}
+  }
+
+

@@ -39,6 +39,13 @@ export default {
     }
   },
 
+  updateUser(user) {
+    return {
+      type: 'UPDATE_USER',
+      user
+    }
+  },
+
   loginOut() {
     return {
       type: 'LOGIN_OUT'

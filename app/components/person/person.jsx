@@ -12,18 +12,20 @@ class Person extends React.Component {
     this.state = {}
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (!this.props.view.user) return this.props.history.push('/login')
   }
 
   render() {
     let { width, height } = this.props.view
-    let frameStyle = { width, height }
+    let frameStyle = { width, height, backgroundImage: `url(${require('Image2/0.png')})` }
     let username = '未登录'
     let style = {cursor: 'pointer'}
     if (this.props.view.user) {
       username = this.props.view.user.username
     }
+    
+    let { roles, points } = this.props.view.user
     return (
       <div id={css.frame} style={frameStyle}>
         <Link to='/'><img className={css.logo} src={require('Image2/logo-2.png')} alt=""/></Link>
@@ -39,8 +41,12 @@ class Person extends React.Component {
             <span className={css.changePassword} style={style}>修改密码</span>
           </div>
           <div>
-            <img src={require('Image2/3.png')} alt=""/>
-            <span>已购买</span>
+            <img src={require('Image2/3.png')} />
+            <span>产品：已购买</span>
+          </div>
+          <div>
+            <img src={require('Image2/3.png')} title="检查文字免费，检查图片每张消费4点"/>
+            <span>点数：{points}</span>
           </div>
           <div>
             <img src={require('Image2/6.png')} alt=""/>

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import common from 'Css2/common'
 import css from 'Css2/download'
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 const cards = [
   {
@@ -54,9 +53,9 @@ class Download extends React.Component {
           <img src={require('Image2/logo-1.png')} alt="" />
           <ul>
             <li><Link to='/'>产品介绍</Link></li>
-            <li><Link to='/download'>客户端下载</Link></li>
-            <li><Link to='/'>购买产品</Link></li>
-            <li><Link to='/'>公司介绍</Link></li>
+            <li className={common.now}><Link to='/download'>客户端下载</Link></li>
+            <li><Link to='/pay'>购买产品</Link></li>
+            <li><Link to='/support'>公司介绍</Link></li>
             {isLogin ?
               <li><Link to='/person'>个人中心</Link></li> :
               <li>

@@ -11,9 +11,11 @@ import Person from './components/person/person'
 import Password from './components/password/password'
 import Download from './components/download/download'
 import Pay from './components/pay/pay'
+import Support from './components/support/support'
 import css from 'Css/index.css'
 import store from './store/store'
 import Action from './action/action'
+import Beian from './components/common/beian'
 
 class App extends React.Component {
   constructor() {
@@ -42,8 +44,10 @@ class App extends React.Component {
           <Route exact path='/password' component={Password}/>
           <Route exact path='/download' component={Download}/>
           <Route exact path='/pay' component={Pay}/>
+          <Route exact path='/support' component={Support}/>
           <Route component={NoMatch}/>
         </Switch>
+        <Beian/>
       </div>
     )
   }
