@@ -76,7 +76,7 @@ class Pay extends React.Component {
             <li><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>
             <li className={common.now}><Link to='/pay'>购买产品</Link></li>
-            <li><Link to='/'>公司介绍</Link></li>
+            <li><Link to='/support'>技术支持</Link></li>
             {isLogin ?
               <li><Link to='/person'>个人中心</Link></li> :
               <li>
@@ -240,6 +240,8 @@ class Pay extends React.Component {
   }
 
   next() {
+    console.log(this.state)
+    if (this.state.price == 0) return
     this.setState({step: 1})
   }
 

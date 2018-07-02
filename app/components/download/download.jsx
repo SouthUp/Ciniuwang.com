@@ -10,7 +10,7 @@ const cards = [
     name: '词牛客户端',
     version: '1.0',
     time: '更新时间: 2018-7-1',
-    url: 'http://www.ciniuwang.com/files/词牛.exe',
+    url: 'http://www.ciniuwang.com/files/词牛.zip',
 
   },
   {
@@ -55,7 +55,7 @@ class Download extends React.Component {
             <li><Link to='/'>产品介绍</Link></li>
             <li className={common.now}><Link to='/download'>客户端下载</Link></li>
             <li><Link to='/pay'>购买产品</Link></li>
-            <li><Link to='/support'>公司介绍</Link></li>
+            <li><Link to='/support'>技术支持</Link></li>
             {isLogin ?
               <li><Link to='/person'>个人中心</Link></li> :
               <li>
@@ -78,7 +78,7 @@ class Download extends React.Component {
 
         <div className={css.cards}>
             {cards.map(item => (
-              <div className={css.card}>
+              <div className={css.card} key={item.name}>
                 <img src={item.logo} alt=""/>
                 <div className={css.name}>{item.name}</div>
                 <div className={css.version}>{item.version}</div>

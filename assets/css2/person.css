@@ -1,7 +1,7 @@
 #frame {
     width: 100%;
     height: 100%;
-    padding-top: 130px;
+    /* padding-top: 130px; */
     box-sizing: border-box;
 }
 
@@ -17,6 +17,8 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    position: relative;
+    top: 130px;
 }
 
 .content > img {
@@ -40,10 +42,35 @@
     color: #2196f3;
 }
 
+.changePassword a:link {
+    color: #2196f3;
+}
+
+.changePassword a:visited {
+    color: #2196f3;
+}
+
 .loginOut {
     color: rgba(244,67,54,.87);
 }
 
 .title {
     justify-content: center;
+}
+
+.points {
+    width:  200px!important;
+    padding-left: 57px;
+}
+
+.points a {
+    margin-left: 5px
+}
+
+.points a:link {
+    color: #2196f3;
+}
+
+.points a:visited {
+    color: #2196f3;
 }

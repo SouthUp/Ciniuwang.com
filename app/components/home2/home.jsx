@@ -33,7 +33,7 @@ class Home extends React.Component {
             <li className={common.now}><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>
             <li><Link to='/pay'>购买产品</Link></li>
-            <li><Link to='/support'>公司介绍</Link></li>
+            <li><Link to='/support'>技术支持</Link></li>
             {isLogin ?
               <li><Link to='/person'>个人中心</Link></li> :
               <li>

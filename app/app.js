@@ -35,7 +35,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='index-wrap'>
+      <div className='index-wrap' style={{position: 'relative'}}>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/login' component={Login}/>

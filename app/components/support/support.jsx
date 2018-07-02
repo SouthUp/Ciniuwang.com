@@ -13,12 +13,13 @@ class Support extends React.Component {
   }
 
   componentWillMount() {
-    if (!this.props.view.user) this.props.history.push('/login')
+    // if (!this.props.view.user) this.props.history.push('/login')
   }
 
   render() {
     let { width, height } = this.props.view
-    let frameStyle = { width, height, background: 'rgb(250, 250, 250)' }
+    let frameStyle = { width, height, background: 'rgb(250, 250, 250)',
+      backgroundImage: `url(${require('Image2/12.png')})`}
 
     let isLogin = false
     if (this.props.view.user) isLogin = true
@@ -33,7 +34,7 @@ class Support extends React.Component {
             <li style={linkColor}><Link to='/'>产品介绍</Link></li>
             <li style={linkColor}><Link to='/download'>客户端下载</Link></li>
             <li style={linkColor}><Link to='/pay'>购买产品</Link></li>
-            <li style={linkNowColor} className={common.now}><Link to='/support'>公司介绍</Link></li>
+            <li style={linkNowColor} className={common.now}><Link to='/support'>技术支持</Link></li>
             {isLogin ?
               <li style={loginColor}><Link to='/person'>个人中心</Link></li> :
               <li style={loginColor}>
