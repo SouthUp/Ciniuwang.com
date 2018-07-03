@@ -27,7 +27,8 @@ class Pay extends React.Component {
   }
 
   componentWillMount() {
-    if (!this.props.view.user) this.props.history.push('/login?from=pay')
+    console.log(this.props.history)
+    if (!this.props.view.user) this.props.history.replace('/login?from=pay')
   }
 
   componentWillUnmount() {
@@ -114,7 +115,7 @@ class Pay extends React.Component {
               <div className={css.line}></div>
               <div className={css['remain-point']}>
                 剩余点数：{user.point} 
-                <span style={{color: 'rgba(44, 50, 65, 0.54)',fontSize:'14px'}}> 检查文字免费，检查图片每张消费4点</span>
+                <span style={{color: 'rgba(44, 50, 65, 0.54)',fontSize:'14px'}}> 检查文字免费，检查图片每张消费6点</span>
               </div>
             </div>
           </div>
@@ -261,7 +262,7 @@ class Pay extends React.Component {
       dataType: 'json',
       data: send_data,
       success: (res) => {
-        window.open(res.url, '_blank')
+        this.openwindow = window.open(res.url, '_blank')
         this.setState({'id': res.result.objectId}, () => {
           this.createPulling()
         })
@@ -290,6 +291,9 @@ class Pay extends React.Component {
           if (res.code == '10000' ) {
             if (res.trade_status == 'TRADE_SUCCESS') {
               console.log('支付成功')
+              setTimeout(() => {
+                if (this.openwindow) this.openwindow.close()
+              },500)
               Object.assign(obj, {complete: true})
               clearInterval(this.pulling)
               this.linkToPersonPage()

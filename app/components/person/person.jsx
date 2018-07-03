@@ -14,8 +14,7 @@ class Person extends React.Component {
   }
 
   componentWillMount() {
-    console.log(!this.props.view.user)
-    if (!this.props.view.user) return this.props.history.push('/login')
+    if (!this.props.view.user) return this.props.history.replace('/login')
   }
 
   render() {
@@ -70,8 +69,10 @@ class Person extends React.Component {
             <span>产品：已购买</span>
           </div>
           <div className={css.points}>
-            <img src={require('Image2/3.png')} title="检查文字免费，检查图片每张消费4点"/>
-            <span>点数：{points}</span> <Link to='/pay'>充值</Link>
+            <img src={require('Image2/9.png')}/>
+            <span>点数：{points}</span> 
+            <img className={css.pointsQ} src={require('Image2/10.png')} title="检查文字免费，检查图片每张消费6点"/>
+            <Link to='/pay'>立即充值</Link>
           </div>
           <div>
             <img src={require('Image2/6.png')} alt=""/>
@@ -84,7 +85,7 @@ class Person extends React.Component {
 
   loginOut() {
     store.dispatch(Action.loginOut())
-    this.props.history.push('/login')
+    this.props.history.replace('/login')
   }
 
 }

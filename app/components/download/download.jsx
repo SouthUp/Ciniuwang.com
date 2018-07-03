@@ -10,23 +10,7 @@ const cards = [
     name: '词牛客户端',
     version: '1.0',
     time: '更新时间: 2018-7-1',
-    url: 'http://www.ciniuwang.com/files/词牛.zip',
-
-  },
-  {
-    logo: require('Image2/97.png'),
-    name: 'Word插件',
-    version: '1.0',
-    time: '更新时间: 2018-7-1',
-    url: 'http://www.ciniuwang.com/files/Word插件.zip',
-
-  },
-  {
-    logo: require('Image2/97.png'),
-    name: 'Excel插件',
-    version: '1.0',
-    time: '更新时间: 2018-7-1',
-    url: 'http://www.ciniuwang.com/files/Excel插件.zip',
+    url: 'http://www.ciniuwang.com/files/词牛客户端.zip',
 
   }
 ]

@@ -23,8 +23,9 @@ const viewState = (state = defaultState, action) => {
       })
     
     case 'UPDATE_USER':
+      let newUser = Object.assign({}, state.user, action.user)
       return Object.assign({}, state, {
-        user: action.user
+        user: newUser
       })
     case 'LOGIN_OUT':
       return Object.assign({}, state, {

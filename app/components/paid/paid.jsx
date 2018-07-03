@@ -1,33 +1,43 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import css from 'Css2/home'
 import common from 'Css2/common'
-import contents from './contents.js'
-import Content from './content.jsx'
 
-class Home extends React.Component {
+
+class Support extends React.Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+
+    }
   }
 
   componentWillMount() {
-    document.body.style = ''
+    // if (!this.props.view.user) this.props.history.push('/login')
   }
 
   componentDidMount() {
-
+    setTimeout(() => {
+      console.log('will close')
+      self.close()
+    }, 3000)
   }
 
   render() {
     let { width, height } = this.props.view
-    let contentStyle = { width, height, backgroundImage: `url(${require('Image2/hero.png')})` }
+    let frameStyle = {
+      width, height, background: 'rgb(250, 250, 250)',
+      backgroundImage: `url(${require('Image2/12.png')})`
+    }
+
     let isLogin = false
     if (this.props.view.user) isLogin = true
+    let linkColor = { color: 'rgba(44, 50, 65, 0.87)' }
+    let linkNowColor = { color: '#2c3241' }
+    let loginColor = { color: 'rgba(44, 50, 65, 0.54)' }
     return (
-      <div>
-        <div id={common.nav}>
+      <div style={frameStyle} >
+        <div id={common.nav} style={{background:'linear-gradient(30deg, #3f4cfd, #2196f3)'}}>
           <img src={require('Image2/logo-1.png')} alt="" />
           <ul>
             <li className={common.now}><Link to='/'>产品介绍</Link></li>
@@ -44,15 +54,17 @@ class Home extends React.Component {
             }
           </ul>
         </div>
-        <div id={css.hero} style={contentStyle}>
-          <div className={css.heroTitle}>
-            <div>词牛，让天下没有难改的文案</div>
-            <div>词牛是一款电商违禁词检测工具，能够迅速帮助您检索文案中出现的违禁词，提高文案创作效率。</div>
-          </div>
+
+        <div className={common.paidContent}>
+          <img src={require('Image2/100.png')} alt="" />
+          <span onClick={this.close.bind(this)}>支付完成</span>
         </div>
-        {contents.map((item, index) => <Content key={index} infor={item} />)}
       </div>
     )
+  }
+
+  close() {
+    window.close()
   }
 
 }
@@ -63,4 +75,4 @@ var mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(Support)

@@ -78,7 +78,7 @@ class Login extends React.Component {
       data: { username, password },
       success: (res) => {
         store.dispatch(action.setUser(res))
-        
+        console.log(res)
         if (window.location.search.indexOf('pay') !== -1) {
           this.props.history.push('/pay')
         } else {

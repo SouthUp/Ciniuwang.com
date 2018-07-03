@@ -119,7 +119,8 @@ module.exports = {
     new webpack.HashedModuleIdsPlugin(),
     // 生成HTML插件
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'assets', 'index.html')
+      template: path.join(__dirname, 'assets', 'index.html'),
+      favicon:'./assets/images2/16.ico',
     }),
     // 提取css插件（不再包含在bundle中）
     // new ExtractTextPlugin({

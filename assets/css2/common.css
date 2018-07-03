@@ -87,6 +87,7 @@
     font-size: 18px;
     font-weight: 500;
     position: absolute;
+    user-select: text;
 }
 
 .supportContent span:first-child {
@@ -97,6 +98,22 @@
 .supportContent span:last-child {
     left: 286px;
     top: 147px;
+}
+
+.paidContent {
+    display: flex;
+    flex-flow: column nowrap;
+    align-content: center;
+    width: 108px;
+    height: 150px;
+    position: absolute;
+    left: 50%;
+    top: 170px;
+    margin-left: -54px;
+    text-align: center;
+    justify-content: space-between;
+    font-size: 16px;
+    color: rgba(0, 0, 0, .87)
 }
 
 @media screen and (max-width: 1366px) {
