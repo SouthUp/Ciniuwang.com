@@ -247,7 +247,7 @@ class Pay extends React.Component {
   }
 
   pay() {
-    
+    if (this.state.id) return
     let { username, roles, sessionToken } = this.props.view.user
     let { pointIndex, types } = this.state
     
@@ -293,7 +293,7 @@ class Pay extends React.Component {
               console.log('支付成功')
               setTimeout(() => {
                 if (this.openwindow) this.openwindow.close()
-              },500)
+              },6000)
               Object.assign(obj, {complete: true})
               clearInterval(this.pulling)
               this.linkToPersonPage()
@@ -318,8 +318,8 @@ class Pay extends React.Component {
       success: res => {
         store.dispatch(Action.updateUser(res))
         setTimeout(() => {
-          this.props.history.push('/person')
-        }, 4000)
+          // this.props.history.push('/person')
+        }, 8000)
       }
     })
     
