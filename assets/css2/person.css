@@ -66,18 +66,14 @@
 }
 
 .points {
-    /* width:  200px!important; */
-    /* padding-left: 48px; */
+    position: relative;
     margin-left: -4px;
 }
-
-
 
 .pointsQ {
     margin-left: 4px;
 
 }
-
 
 .points a:link {
     color: #2196f3;
@@ -85,4 +81,24 @@
 
 .points a:visited {
     color: #2196f3;
+}
+
+.question {
+    background: #464C5C;
+    position: absolute;
+    top: 35px;
+    left: 215px;
+    padding: 0 10px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 13px;
+    color: #abb;
+    border-radius: 2px;
+    box-shadow: 0 0 1px;
+    white-space: nowrap;
+    display: none;
+}
+
+.pointsQ:hover + a + .question {
+    display: block;
 }

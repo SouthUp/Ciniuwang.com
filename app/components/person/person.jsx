@@ -36,7 +36,7 @@ class Person extends React.Component {
     return (
       <div id={css.frame} style={frameStyle}>
         <div id={common.nav} style={{ zIndex: 900 }}>
-          <img src={require('Image2/logo-2.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-2.png')} alt="" /></Link>
           <ul>
             <li style={linkColor}><Link to='/'>产品介绍</Link></li>
             <li style={linkColor}><Link to='/download'>客户端下载</Link></li>
@@ -65,14 +65,15 @@ class Person extends React.Component {
             <span className={css.changePassword} style={style}><Link to='/password'>修改密码</Link></span>
           </div>
           <div>
-            <img src={require('Image2/3.png')} />
+            <img src={require('Image2/3(2).png')} />
             <span>产品：已购买</span>
           </div>
           <div className={css.points}>
-            <img src={require('Image2/9.png')}/>
+            <img src={require('Image2/9.png')} style={{width:'22px', marginRight:'13px'}}/>
             <span>点数：{points}</span> 
-            <img className={css.pointsQ} src={require('Image2/10.png')} title="检查文字免费，检查图片每张消费6点"/>
+            <img className={css.pointsQ} src={require('Image2/10.png')}/>
             <Link to='/pay'>立即充值</Link>
+            <span className={css.question}>检查文字免费，检查图片每张消费6点</span>
           </div>
           <div>
             <img src={require('Image2/6.png')} alt=""/>

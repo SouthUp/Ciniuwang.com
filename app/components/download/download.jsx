@@ -34,7 +34,7 @@ class Download extends React.Component {
     return (
       <div style={frameStyle} >
         <div id={common.nav} style={{zIndex: 900}}>
-          <img src={require('Image2/logo-1.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-1.png')} alt="" /></Link>
           <ul>
             <li><Link to='/'>产品介绍</Link></li>
             <li className={common.now}><Link to='/download'>客户端下载</Link></li>

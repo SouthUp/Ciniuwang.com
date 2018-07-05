@@ -38,7 +38,7 @@ class Support extends React.Component {
     return (
       <div style={frameStyle} >
         <div id={common.nav} style={{background:'linear-gradient(30deg, #3f4cfd, #2196f3)'}}>
-          <img src={require('Image2/logo-1.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-1.png')} alt="" /></Link>
           <ul>
             <li className={common.now}><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>

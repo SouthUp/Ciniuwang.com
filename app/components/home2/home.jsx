@@ -28,7 +28,7 @@ class Home extends React.Component {
     return (
       <div>
         <div id={common.nav}>
-          <img src={require('Image2/logo-1.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-1.png')} alt="" /></Link>
           <ul>
             <li className={common.now}><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>

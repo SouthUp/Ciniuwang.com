@@ -29,7 +29,7 @@ class Support extends React.Component {
     return (
       <div style={frameStyle} >
         <div id={common.nav} style={{ zIndex: 900 }}>
-          <img src={require('Image2/logo-2.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-2.png')} alt="" /></Link>
           <ul>
             <li style={linkColor}><Link to='/'>产品介绍</Link></li>
             <li style={linkColor}><Link to='/download'>客户端下载</Link></li>
@@ -49,9 +49,9 @@ class Support extends React.Component {
         
         <div className={common.supportContent}>
           
-          <span>Q Q：738740964</span>
+          <span>Q Q群：738740964</span>
           <img src={require('Image2/103.png')} alt=""/>
-          <span>yuanqi.wang@ciniuwang.com</span>
+          <span>support@ciniuwang.com</span>
         </div>
       </div>
     )

@@ -13,10 +13,10 @@ import Download from './components/download/download'
 import Pay from './components/pay/pay'
 import Paid from './components/paid/paid'
 import Support from './components/support/support'
+import Home3 from './components/home3/home'
 import css from 'Css/index.css'
 import store from './store/store'
 import Action from './action/action'
-import Beian from './components/common/beian'
 
 class App extends React.Component {
   constructor() {
@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <div className='index-wrap' style={{position: 'relative'}}>
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' component={Home3}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/person' component={Person}/>
@@ -47,9 +47,9 @@ class App extends React.Component {
           <Route exact path='/pay' component={Pay}/>
           <Route exact path='/paid' component={Paid}/>
           <Route exact path='/support' component={Support}/>
+          <Route exact path='/home' component={Home}/>
           <Route component={NoMatch}/>
         </Switch>
-        <Beian/>
       </div>
     )
   }

@@ -22,7 +22,8 @@ class Pay extends React.Component {
       step: 0,
       trade: null,
       id: '',
-      complete: false
+      complete: false,
+      question: false
     }
   }
 
@@ -72,7 +73,7 @@ class Pay extends React.Component {
       <div id={css.frame} style={frameStyle}>
         <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
         <div id={common.nav} style={{backgroundImage: 'linear-gradient(30deg, #3f4cfd, #2196f3)'}}>
-          <img src={require('Image2/logo-1.png')} alt="" />
+          <Link to='/'><img src={require('Image2/logo-1.png')} alt="" /></Link>
           <ul>
             <li><Link to='/'>产品介绍</Link></li>
             <li><Link to='/download'>客户端下载</Link></li>
