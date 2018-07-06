@@ -14,6 +14,7 @@ import Pay from './components/pay/pay'
 import Paid from './components/paid/paid'
 import Support from './components/support/support'
 import Home3 from './components/home3/home'
+import Pay2 from './components/pay/pay2'
 import css from 'Css/index.css'
 import store from './store/store'
 import Action from './action/action'
@@ -38,7 +39,7 @@ class App extends React.Component {
     return (
       <div className='index-wrap' style={{position: 'relative'}}>
         <Switch>
-          <Route exact path='/' component={Home3}/>
+          <Route exact path='/' component={Pay2}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/person' component={Person}/>

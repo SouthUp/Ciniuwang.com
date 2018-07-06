@@ -20,7 +20,7 @@ class Home extends React.Component {
       <div style={mainStyle}>
         <Nav index={0} isLogin={isLogin}/>
         <div className={css.content}>
-          <title>词牛，让敏感词无处可藏</title>
+          <title>词牛，让违禁词无处可藏</title>
           <div className={css.contentMain}>
             <div className={css.contentLeft}>
               {/* 软件标题 */}

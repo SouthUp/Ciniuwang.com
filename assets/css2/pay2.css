@@ -1,0 +1,117 @@
+.content {
+    max-width: 1200px;
+    margin: 35px auto 59px;
+    font-size: 14px;
+}
+
+.content > title {
+    color: rgba(61, 70, 74, 0.38); 
+}
+
+.tag {
+    font-size: 16px;
+    color: #3d464a;
+    margin-right: 28px;
+}
+
+.type {
+    border-bottom: 1px solid rgba(61, 70, 74, 0.12);
+}
+
+.currentType {
+    width: 108px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #a1abbe;
+    text-align: center;
+    border-radius: 4px;
+    color: #feffff;
+    font-weight: 500;
+}
+
+.orderDescribe {
+    color: rgba(61, 70, 74, 0.54);
+    font-size: 12px;
+}
+
+.point {
+    padding: 31px 0;
+}
+
+.point > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.pointDetail {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.pointList {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.pointItem {
+    height: 62px;
+    padding: 0 19px;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12), 0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    margin-right: 18px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#select {
+    border-radius: 2px;
+  border: solid 2px #2396f3;
+}
+
+.pointItem:last-child { padding: 0 16px;}
+
+.pointItem > div:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(61, 70, 74, 0.87);
+}
+
+.pointItem > div:last-child {
+    color: rgba(61, 70, 74, 0.54);
+}
+
+.discount {
+    position: absolute;
+    right: -2px;
+    top: -1px;
+    width: 43px;
+    height: 43px;
+    opacity: 0.72;
+    font-size: 8.5px;
+}
+
+.discount div {
+    color: #fff;
+    height: 43px;
+    line-height: 27px;
+    transform: rotate(45deg);
+    font-weight: 500;
+}
+
+.discount.hidden {
+    display: none;
+}
+
+.pointPriceCount {
+    color: #ff8f00;
+    font-size: 16px;
+}

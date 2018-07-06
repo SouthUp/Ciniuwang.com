@@ -6,7 +6,6 @@ import Action from '../../action/action'
 import css from 'Css2/pay'
 import common from 'Css2/common'
 import Snackbar from '../common/snackbar'
-import { create } from 'domain';
 var $ = require('jquery')
 
 class Pay extends React.Component {
