@@ -36,6 +36,7 @@
 
 .point {
     padding: 31px 0;
+    border-bottom: 1px solid rgba(61, 70, 74, 0.12);
 }
 
 .point > div {
@@ -43,6 +44,8 @@
     flex-flow: row nowrap;
     align-items: center;
 }
+
+.point > div:first-child { margin-bottom: 24px; }
 
 .pointDetail {
     display: flex;
@@ -114,4 +117,118 @@
 .pointPriceCount {
     color: #ff8f00;
     font-size: 16px;
+}
+
+.pointDescribe ul{
+    padding-left: 89px;
+    width: 367px;
+}
+
+.pointDescribe ul li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    color: rgba(61, 70, 74, 0.54);
+    font-size: 14px;
+}
+
+.invoice {
+    padding: 31px 0;
+    border-bottom: 1px solid rgba(61, 70, 74, 0.12);
+    display: flex;
+    align-content: center;
+}
+
+
+.invoiceDetail {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.invoiceDetail > *:first-child { margin-bottom: 19px}
+.invoiceDetail > *:nth-child(2) { margin-bottom: 25px}
+.invoiceDetail > *:nth-child(3) { margin-bottom: 8px}
+.invoiceDetail > *:nth-child(4) { margin-bottom: 23px}
+.invoiceDetail > *:nth-child(5) { margin-bottom: 7px}
+.invoiceDetail > *:nth-child(6) { margin-bottom: 8px}
+.invoiceDetail > *:nth-child(7) { margin-bottom: 8px}
+
+.invoiceDetail > input:nth-child(3) { width: 320px }
+.invoiceDetail > *:nth-child(4) > input { width: 320px}
+.invoiceDetail > input:nth-child(6) { width: 560px }
+.invoiceDetail > *:nth-child(7) > input { width: 276px}
+.invoiceDetail > input:nth-child(8) { width: 276px }
+.selectItem {
+    height: 21px;
+    line-height: 21px;
+    display: inline-block;
+    position: relative;
+    padding-left: 34px;
+    margin-right: 49px;
+}
+
+.selectItem img {
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+}
+
+.invoiceDetail input[type=text] {
+    border: 1px solid #8894ad;
+    height: 40px;
+    padding-left: 17px;
+    margin-right: 8px;
+    background-color: #fafbfd;
+    box-sizing: border-box;
+}
+
+.invoiceDetail ::-webkit-input-placeholder {
+    color: rgba(61, 70, 74, 0.38);
+    font-size: 14px;
+}
+
+.invoiceDetail ::-moz-placeholder {
+    color: rgba(61, 70, 74, 0.38);
+    font-size: 14px;
+}
+
+.pay {
+    padding: 31px 0;
+    border-bottom: 1px solid rgba(61, 70, 74, 0.12);
+    display: flex;
+    align-content: center;
+}
+
+.payDetail { 
+    display: flex;
+    align-items: center;
+}
+
+.total  {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    padding-top: 16px;
+}
+
+.total > div:nth-child(1) {
+    margin-bottom: 6px;
+}
+
+.total > div:nth-child(2) {
+    font-size: 12px;
+    color: rgba(61, 70, 74, 0.54);
+    margin-bottom: 15px;
+}
+
+.total > div:nth-child(3) {
+    width: 114px;
+    height: 41px;
+    line-height: 41px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 2px;
+    background-color: #2396f3;
+    cursor: pointer;
 }
