@@ -153,12 +153,15 @@
 .invoiceDetail > *:nth-child(5) { margin-bottom: 7px}
 .invoiceDetail > *:nth-child(6) { margin-bottom: 8px}
 .invoiceDetail > *:nth-child(7) { margin-bottom: 8px}
+.invoiceDetail > *:nth-child(9) { margin-bottom: 8px}
 
 .invoiceDetail > input:nth-child(3) { width: 320px }
 .invoiceDetail > *:nth-child(4) > input { width: 320px}
 .invoiceDetail > input:nth-child(6) { width: 560px }
 .invoiceDetail > *:nth-child(7) > input { width: 276px}
 .invoiceDetail > input:nth-child(8) { width: 276px }
+.invoiceDetail > input:nth-child(10) { width: 320px }
+
 .selectItem {
     height: 21px;
     line-height: 21px;
@@ -237,4 +240,114 @@
     border-radius: 2px;
     background-color: #2396f3;
     cursor: pointer;
+}
+
+/* 2 */
+.orderWrap {
+    height: 1104px;
+    box-sizing: border-box;
+    padding-top: 71px;
+}
+
+.orderContent {
+    width: 560px;
+    height: 560px;
+    box-sizing: border-box;
+    border-top: 8px solid #ff8f00;
+    border-radius: 2px;
+    box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.38), 0px 1px 2px 0px rgba(0, 0, 0, 0.16);
+    margin: 0 auto;
+}
+
+.orderContent > title {
+    color: #3d464a;
+    font-weight: bold;
+    font-size: 21px;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    margin: 38px 0 13px;
+}
+
+.orderContent > div {
+    border-bottom: rgba(61, 70, 74, .12) 1px solid;
+    padding-bottom: 23px;
+    padding-top: 25px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #3d464a;
+    font-weight: 500;
+}
+
+.orderPurchase > div {
+    position: relative;
+    overflow: hidden;
+    height: 14px;
+    line-height: 14px;
+}
+
+.orderPurchase > div:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.orderPurchase > div > span {
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+}
+
+.orderPurchase > div > span:nth-child(1) {
+    left: 0px;
+}
+
+.orderPurchase > div > span:nth-child(2) {
+    right: 167px;
+}
+
+.orderPurchase > div > span:nth-child(3) {
+    right: 0px;
+    color: #ff8f00;
+}
+
+.orderPoint > span {
+    position: absolute;
+}
+
+.orderInformation > div {
+    height: 15px;
+    line-height: 15px;
+}
+
+.orderInformation > div:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.orderButton {
+    border-bottom-style: none!important;
+    overflow: hidden;
+
+}
+
+.orderButton > div {
+    width: 114px;
+    height: 41px;
+    line-height: 41px;
+    text-align: center;
+    box-sizing: border-box;
+    float: right;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.orderButton > div:last-child {
+    border:  solid 2px #8894ad;
+    color: #8894ad;
+    margin-right: 11px;
+}
+
+.orderButton > div:first-child {
+    color: #fff;
+    background-color: #2396f3;
+    margin-right: 11px;
 }

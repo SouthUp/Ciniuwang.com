@@ -12,7 +12,10 @@ class Navigation extends React.Component {
     let incomingIndex = this.props.index
     let isLogin = this.props.isLogin
     let currentStyle = { color: '#000' }
+    let wrapStyle = this.props.bgColor? {backgroundColor: this.props.bgColor}: {}
+    if (this.props.border) Object.assign(wrapStyle, this.props.border)
     return (
+      <div  style={wrapStyle}>
       <div className={css.frame}>
         <nav className={css.container}>
           <Link to='/' className={css.logo}><img src={require('Image3/logo-2.png')} alt="" /></Link>
@@ -37,6 +40,7 @@ class Navigation extends React.Component {
               </ul>
             )}
         </nav>
+      </div>
       </div>
     )
   }

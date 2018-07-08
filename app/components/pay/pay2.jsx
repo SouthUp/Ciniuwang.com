@@ -4,7 +4,6 @@ import { Link, Route } from 'react-router-dom'
 import store from '../../store/store'
 import Action from '../../action/action'
 import css from 'Css2/pay2'
-import common from 'Css2/common'
 import Snackbar from '../common/snackbar'
 import Nav from '../common/navigation'
 import Footer from '../common/footer'
@@ -22,6 +21,7 @@ class Pay extends React.Component {
       invoiceTitle: '',
       invoiceId: '',
       address: '',
+      email: '',
       name: '',
       photo: '',
       code: '',
@@ -31,23 +31,63 @@ class Pay extends React.Component {
   }
 
   componentDidMount() {
-    this.countPrice()
+    this.setState({price:this.countPrice()})
   }
 
   render() {
-    let { price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, name, photo, code, pay } = this.state
+    let { price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, email, name, photo, code, pay } = this.state
     let discountStyle={ backgroundImage: `url(${require('Image3/60.png')})` }
     let hidden = { display: 'none'}
     let type = this.getType()
     if (this.state.step == 2) return (
       <div>
-        123
+        <Nav bgColor='#fafbfd' index={2} border={{borderBottom:'1px solid rgba(100,107,118,.12)'}}/>
+        <div className={css.orderWrap}>
+          <div className={css.orderContent}>
+            <title>确认订单</title>
+            {/* 用户信息 */}
+            <div className={css.orderUser}>
+              <div>
+                <span>用户名:</span>
+                <span>test</span>
+              </div>
+            </div>
+            {/* 购买信息 */}
+            <div className={css.orderPurchase}>
+            {annualCount > 0? 
+              <div className={css.orderPoint}>
+              <span>套件年费: </span>
+              <span>{annualCount}</span>
+              <span>{annualCount * 999}元</span>
+            </div>:null}
+            {pointIndex !== -1?
+              <div className={css.orderPoint}>
+                <span>充值点数: </span>
+                <span>{pointList[pointIndex].count}点</span>
+                <span>{pointList[pointIndex].price}元</span>
+              </div>:null}
+            </div>
+            {/* 地址信息 */}
+            <div className={css.orderInformation}>
+              <div style={invoiceClassify=='company'?{}:hidden}>发票抬头：{invoiceTitle}</div>
+              <div style={invoiceClassify=='company'?{}:hidden}>识别号：{invoiceId}</div>
+              <div>邮寄地址：{this.getAddress()}</div>
+              <div>支付方式：支付宝</div>
+            </div>
+            {/* 支付按钮 */}
+            <div className={css.orderButton}>
+              <div onClick={this.pay.bind(this)}>立即支付</div>
+              <div onClick={this.next.bind(this,1)}>上一步</div>
+            </div>
+          </div>  
+        </div>
+        <Footer/>
       </div>  
     )
     return (
       <div>
         {/* 导航 */}
-        <Nav bgColor='#fafbfd' index={2}/>
+        <Nav bgColor='#fafbfd' index={2} border={{borderBottom:'1px solid rgba(100,107,118,.12)'}}/>
         {/* 内容 */}
         <div className={css.content}>
           <title>订单详情</title>
@@ -136,7 +176,10 @@ class Pay extends React.Component {
                   </div>
                   <input type="text" value={code} placeholder='邮编（选填）' 
                     style={invoiceType=='paper'?{}:hidden} onChange={this.input.bind(this, 'code')}/>
-                  
+                   {/* 邮箱地址 */}
+                   <div style={invoiceType=='electronic'?{}:hidden}>邮箱地址</div>
+                    <input type="text" value={email} placeholder='邮箱地址' 
+                    style={invoiceType=='electronic'?{}:hidden} onChange={this.input.bind(this, 'email')}/>
                   <div></div>
               </div>
             
@@ -154,7 +197,7 @@ class Pay extends React.Component {
           <section className={css.total}>
             <div>合计：<span>{price}元</span></div>
             <div>点击确认，即表示您确认已同意我们的使用条款，隐私政策和许可协议。</div>
-            <div>确认订单</div>
+            <div onClick={this.next.bind(this, 2)}>确认订单</div>
           </section>
         </div>
         {/* 页脚 */}
@@ -204,9 +247,20 @@ class Pay extends React.Component {
 
   }
 
-  next() {
+  next(step) {
+    console.log(this.state.price)
     if (this.state.price == 0) return
-    this.setState({step: 1})
+    this.setState({ step })
+  }
+
+  getAddress() {
+    let { address, name, photo} = this.state
+    if (this.state.invoiceType == 'electronic') return '电子发票'
+    else return `${address} ${name} ${photo}`
+  }
+
+  pay() {
+    
   }
 }
 
