@@ -117,6 +117,7 @@
 .pointPriceCount {
     color: #ff8f00;
     font-size: 16px;
+    line-height: 62px;
 }
 
 .pointDescribe ul{
@@ -213,6 +214,11 @@
 
 .total > div:nth-child(1) {
     margin-bottom: 6px;
+}
+
+.total > div:nth-child(1) > span {
+    color: #ff8f00;
+    font-size: 24px;
 }
 
 .total > div:nth-child(2) {

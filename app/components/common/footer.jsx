@@ -14,7 +14,7 @@ class Footer extends React.Component {
         <div className={css.content}>
           <ul className={css.list}>
             {list.map(item => (
-              <li>{item.name}</li>
+              <li key={item.name}>{item.name}</li>
             ))}
           </ul>
           <div className={css.line}/>

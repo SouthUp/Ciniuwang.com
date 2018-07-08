@@ -15,7 +15,7 @@ class Pay extends React.Component {
     super()
     this.state = {
       price: 0,
-      annualCount: 1,
+      annualCount: 0,
       pointIndex: 0,
       invoiceClassify: 'person',  //company person,
       invoiceType: 'electronic', // paper electronic
@@ -25,27 +25,39 @@ class Pay extends React.Component {
       name: '',
       photo: '',
       code: '',
-      pay: 'ali'
+      pay: 'ali',
+      step: 1
     }
   }
 
+  componentDidMount() {
+    this.countPrice()
+  }
+
   render() {
-    let { annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, name, photo, code, pay } = this.state
+    let { price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, name, photo, code, pay } = this.state
     let discountStyle={ backgroundImage: `url(${require('Image3/60.png')})` }
     let hidden = { display: 'none'}
+    let type = this.getType()
+    if (this.state.step == 2) return (
+      <div>
+        123
+      </div>  
+    )
     return (
       <div>
         {/* 导航 */}
-        <Nav bgColor='#fafbfd'/>
+        <Nav bgColor='#fafbfd' index={2}/>
         {/* 内容 */}
         <div className={css.content}>
           <title>订单详情</title>
           {/* 类型显示 */}
           <div className={css.type}>
-            <div className={css.currentType}>企业版</div>
+            <div className={css.currentType} style={type=='company'?{}:hidden}>企业版</div>
+            <div className={css.currentType} style={type=='person'?{}:hidden}>个人版</div>
           </div>
           {/* 订单信息 */}
-          <div className={css.orderDescribe}>
+          <div className={css.orderDescribe} style={hidden}>
             订单号：CN2018070501      订单生成时间 ：2018-07-05
           </div>
           {/* 年费部分 */}
@@ -108,19 +120,22 @@ class Pay extends React.Component {
                     <TypeSelect name='普通发票' select={this.selectType.bind(this, 'paper')} isSelect={invoiceType=='paper'}/>
                     <TypeSelect name='电子发票' select={this.selectType.bind(this, 'electronic')} isSelect={invoiceType=='electronic'}/>
                   </div>
-                  <input type="text" value={invoiceTitle} placeholder='发票抬头' style={invoiceClassify=='company'?{}:hidden}/>
+                  <input type="text" value={invoiceTitle} placeholder='发票抬头' 
+                    style={invoiceClassify=='company'?{}:hidden} onChange={this.input.bind(this, 'invoiceTitle')}/>
                   <div style={invoiceClassify=='company'?{}:hidden}>
-                    <input type="text" value={invoiceId} placeholder='纳税人识别号'/>
+                    <input type="text" value={invoiceId} placeholder='纳税人识别号' onChange={this.input.bind(this, 'invoiceId')}/>
                     <span>开企业抬头发票须填写纳税人识别号，以免影响报销</span>
                   </div>
                   {/* 邮寄地址 */}
                   <div style={invoiceType=='paper'?{}:hidden}>邮寄地址</div>
-                  <input type="text" value={address} placeholder='地址' style={invoiceType=='paper'?{}:hidden}/>
+                  <input type="text" value={address} placeholder='地址' 
+                    style={invoiceType=='paper'?{}:hidden} onChange={this.input.bind(this, 'address')}/>
                   <div style={invoiceType=='paper'?{}:hidden}>
-                    <input type="text" value={name} placeholder='收件人'/>
-                    <input type="text" value={photo} placeholder='手机号'/>
+                    <input type="text" value={name} placeholder='收件人' onChange={this.input.bind(this, 'name')}/>
+                    <input type="text" value={photo} placeholder='手机号' onChange={this.input.bind(this, 'photo')}/>
                   </div>
-                  <input type="text" value={code} placeholder='邮编（选填）' style={invoiceType=='paper'?{}:hidden}/>
+                  <input type="text" value={code} placeholder='邮编（选填）' 
+                    style={invoiceType=='paper'?{}:hidden} onChange={this.input.bind(this, 'code')}/>
                   
                   <div></div>
               </div>
@@ -137,7 +152,7 @@ class Pay extends React.Component {
           </section>
           {/* 提交信息 */}
           <section className={css.total}>
-            <div>合计：<span>{this.state.price}</span></div>
+            <div>合计：<span>{price}元</span></div>
             <div>点击确认，即表示您确认已同意我们的使用条款，隐私政策和许可协议。</div>
             <div>确认订单</div>
           </section>
@@ -148,19 +163,29 @@ class Pay extends React.Component {
     )
   }
 
+  getType() {
+    let type = 'person'
+    if (window.location.search.indexOf('company') !== -1) return 'company'
+    else return 'person'
+  }
+
   selectPoint(pointIndex) {
     if (pointIndex == this.state.pointIndex) {
       this.setState({pointIndex: -1}, () => {
-        this.countPrice()  
+        this.setState({price: this.countPrice()})
       })
     }
     else this.setState({pointIndex}, () => {
-      this.countPrice()
+      this.setState({price: this.countPrice()})
     })
   }
 
   countPrice() {
-
+    let { annualCount, pointIndex } = this.state
+    let annualPrice = 0, pointPrice = 0
+    if (annualCount > 0 )annualPrice = annualCount * 999
+    if (pointIndex !== -1) pointPrice = pointList[pointIndex].price
+    return annualPrice + pointPrice
   }
 
   selectClassify(invoiceClassify) {
@@ -171,8 +196,17 @@ class Pay extends React.Component {
     this.setState({ invoiceType })
   }
 
+  input(type, event) {
+    this.setState({[type]: event.target.value})
+  }
+
   selectPay() {
 
+  }
+
+  next() {
+    if (this.state.price == 0) return
+    this.setState({step: 1})
   }
 }
 
@@ -207,4 +241,10 @@ const pointList = [
   {price: 999, count: '120,000', discount: '8.3折'},
 ]
 
-module.exports = Pay
+const mapStateToProps = state => {
+  return {
+    view: state.view
+  }
+}
+
+module.exports = connect(mapStateToProps)(Pay)

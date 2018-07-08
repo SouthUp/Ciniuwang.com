@@ -38,7 +38,7 @@ summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
 }
-mark { background: #ff0; }
+title { display: block;}
 
 html, body {
     height:100%; 
