@@ -91,7 +91,7 @@ class payHome extends React.Component {
                 </ul>
                 {/* 购买按钮 */}
                 <div className={css.buy}>
-                  <Link to='/pay2?type=person'><span>立即充值</span></Link>
+                  <Link to='/pay?type=person'><span>立即充值</span></Link>
                 </div>
               </div>
               

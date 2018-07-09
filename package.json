@@ -2,7 +2,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node_modules\\.bin\\webpack -p --env=prod",
-    "devel": "webpack-dev-server --open  --env=dev"
+    "devel": "webpack-dev-server --open  --env=dev --host 0.0.0.0"
   },
   "dependencies": {
     "jquery": "^3.3.1",

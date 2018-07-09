@@ -1,0 +1,19 @@
+.content {
+    max-width: 848px;
+    margin: 0 auto;
+    padding-top: 72px;
+}
+
+.part title {
+    text-align: center;
+    font-size: 44px;
+    font-weight: 500;
+    color: #3d464a;
+    line-height: 41px;
+    margin-bottom: 40px;
+}
+
+.part video {
+    margin-bottom: 64px;
+    width: 100%;
+}

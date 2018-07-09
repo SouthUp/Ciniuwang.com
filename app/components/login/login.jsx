@@ -31,7 +31,7 @@ class Login extends React.Component {
     return (
       <div id={css.frame} style={frameStyle}>
         <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
-        <Link to='/'><img className={css.logo} src={require('Image2/logo-2.png')} alt=""/></Link>
+        <Link to='/'><img className={css.logo} src={require('Image3/logo-2.png')} alt=""/></Link>
         <div className={css.content}>
           <div className={css.title}>登录</div>
           <div className={css.inputFrame}>

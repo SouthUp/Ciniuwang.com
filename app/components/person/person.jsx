@@ -1,10 +1,10 @@
 import React from 'react'
+import Nav from '../common/navigation'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import store from '../../store/store'
 import Action from '../../action/action'
 import css from 'Css2/person'
-import common from 'Css2/common'
 var $ = require('jquery')
 
 class Person extends React.Component {
@@ -27,32 +27,12 @@ class Person extends React.Component {
     }
     let isLogin = false
     if (this.props.view.user) isLogin = true
-    else return (<div></div>)
+    else return (<div>请登录</div>)
     let { roles, points } = this.props.view.user
-    
-    let linkColor = {color: 'rgba(44, 50, 65, 0.87)'}
-    let linkNowColor = {color: '#2c3241'}
-    let loginColor = {color: 'rgba(44, 50, 65, 0.54)'}
+
     return (
       <div id={css.frame} style={frameStyle}>
-        <div id={common.nav} style={{ zIndex: 900 }}>
-          <Link to='/'><img src={require('Image2/logo-2.png')} alt="" /></Link>
-          <ul>
-            <li style={linkColor}><Link to='/'>产品介绍</Link></li>
-            <li style={linkColor}><Link to='/download'>客户端下载</Link></li>
-            <li style={linkColor}><Link to='/pay'>购买产品</Link></li>
-            <li style={linkColor}><Link to='/support'>技术支持</Link></li>
-            {isLogin ?
-              <li style={loginColor} className={common.now}><Link to='/person'>个人中心</Link></li> :
-              <li style={loginColor}>
-                <span><Link to='/login'>登录</Link></span>
-                <span>|</span>
-                <span><Link to='/register'>注册</Link></span>
-              </li>
-            }
-
-          </ul>
-        </div>
+        <Nav/>
         <div className={css.content}>
           <img src={require('Image2/11.png')}/>
           <div className={css.title}>个人信息</div>
@@ -73,7 +53,7 @@ class Person extends React.Component {
             <span>点数：{points}</span> 
             <img className={css.pointsQ} src={require('Image2/10.png')}/>
             <Link to='/pay'>立即充值</Link>
-            <span className={css.question}>检查文字免费，检查图片每张消费6点</span>
+            <span className={css.question}>检查文字免费，检查图片每张消费8点</span>
           </div>
           <div>
             <img src={require('Image2/6.png')} alt=""/>

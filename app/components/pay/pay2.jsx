@@ -7,7 +7,9 @@ import css from 'Css2/pay2'
 import Snackbar from '../common/snackbar'
 import Nav from '../common/navigation'
 import Footer from '../common/footer'
+import { createTrade, queryTrade } from './lib.js'
 var $ = require('jquery')
+
 
 class Pay extends React.Component {
   constructor() {
@@ -23,11 +25,18 @@ class Pay extends React.Component {
       address: '',
       email: '',
       name: '',
-      photo: '',
+      phone: '',
       code: '',
       pay: 'ali',
-      step: 1
+      step: 1,
+      id: '',
+      complete: false,
+      text: ''
     }
+  }
+
+  componentWillMount() {
+    if (!this.props.view.user) this.props.history.replace('/login?from=pay')
   }
 
   componentDidMount() {
@@ -35,12 +44,21 @@ class Pay extends React.Component {
   }
 
   render() {
-    let { price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, email, name, photo, code, pay } = this.state
+    let { price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, email, name, phone, code, pay, id } = this.state
     let discountStyle={ backgroundImage: `url(${require('Image3/60.png')})` }
     let hidden = { display: 'none'}
     let type = this.getType()
+    let payButtonMessage = '立即支付'
+    if (this.state.id) {
+      payButtonMessage = '等待支付...'
+    }
+
+    if (this.state.complete) {
+      payButtonMessage = '充值成功...'
+    }
     if (this.state.step == 2) return (
       <div>
+        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
         <Nav bgColor='#fafbfd' index={2} border={{borderBottom:'1px solid rgba(100,107,118,.12)'}}/>
         <div className={css.orderWrap}>
           <div className={css.orderContent}>
@@ -76,8 +94,8 @@ class Pay extends React.Component {
             </div>
             {/* 支付按钮 */}
             <div className={css.orderButton}>
-              <div onClick={this.pay.bind(this)}>立即支付</div>
-              <div onClick={this.next.bind(this,1)}>上一步</div>
+              <div onClick={this.pay.bind(this)}>{payButtonMessage}</div>
+              <div style={id?hidden:{}} onClick={this.next.bind(this,1)}>上一步</div>
             </div>
           </div>  
         </div>
@@ -86,6 +104,7 @@ class Pay extends React.Component {
     )
     return (
       <div>
+        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
         {/* 导航 */}
         <Nav bgColor='#fafbfd' index={2} border={{borderBottom:'1px solid rgba(100,107,118,.12)'}}/>
         {/* 内容 */}
@@ -172,7 +191,7 @@ class Pay extends React.Component {
                     style={invoiceType=='paper'?{}:hidden} onChange={this.input.bind(this, 'address')}/>
                   <div style={invoiceType=='paper'?{}:hidden}>
                     <input type="text" value={name} placeholder='收件人' onChange={this.input.bind(this, 'name')}/>
-                    <input type="text" value={photo} placeholder='手机号' onChange={this.input.bind(this, 'photo')}/>
+                    <input type="text" value={phone} placeholder='手机号' onChange={this.input.bind(this, 'phone')}/>
                   </div>
                   <input type="text" value={code} placeholder='邮编（选填）' 
                     style={invoiceType=='paper'?{}:hidden} onChange={this.input.bind(this, 'code')}/>
@@ -182,9 +201,6 @@ class Pay extends React.Component {
                     style={invoiceType=='electronic'?{}:hidden} onChange={this.input.bind(this, 'email')}/>
                   <div></div>
               </div>
-            
-            
-            
           </section>
           {/* 支付方式 */}
           <section className={css.pay}>
@@ -206,12 +222,18 @@ class Pay extends React.Component {
     )
   }
 
+  clearText() {
+    this.setState({text: ''})
+  }
+
+  // 当前购买产品类型
   getType() {
     let type = 'person'
     if (window.location.search.indexOf('company') !== -1) return 'company'
     else return 'person'
   }
 
+  //选择充值点数
   selectPoint(pointIndex) {
     if (pointIndex == this.state.pointIndex) {
       this.setState({pointIndex: -1}, () => {
@@ -240,7 +262,8 @@ class Pay extends React.Component {
   }
 
   input(type, event) {
-    this.setState({[type]: event.target.value})
+    if (type == 'phone' || type == 'code') this.setState({[type]: event.target.value.replace(/\D/g,'')})
+    else this.setState({[type]: event.target.value})
   }
 
   selectPay() {
@@ -254,12 +277,73 @@ class Pay extends React.Component {
   }
 
   getAddress() {
-    let { address, name, photo} = this.state
+    let { address, name, phone} = this.state
     if (this.state.invoiceType == 'electronic') return '电子发票'
-    else return `${address} ${name} ${photo}`
+    else return `${address} ${name} ${phone}`
   }
 
   pay() {
+    console.log(createTrade)
+    if (this.state.id) return
+    let { username, sessionToken } = this.props.view.user
+    let { annualCount, pointIndex} = this.state
+    if (!username) return this.setState({text: '请登录'})
+    if (annualCount == 0 && pointIndex == -1) return this.setState({text: '请选择软件产品'})
+    createTrade(sessionToken, this.state).then(res => {
+      console.log(res)
+      this.openwindow = window.open(res.url, '_blank')
+        this.setState({'id': res.result.objectId}, () => {
+          this.createPulling()
+        })
+    }, err => {
+      console.log(err)
+      this.setState({text:err.message})
+    })
+  }
+
+  createPulling() {
+    let { sessionToken } = this.props.view.user
+    let { id } = this.state
+    if (!id) return clearInterval(this.pulling)
+    this.pulling = setInterval(() => {
+      queryTrade(sessionToken, id).then(res => {
+        let obj = { trade: res}
+          console.log(res)
+          if (res.code == '10000' ) {
+            if (res.trade_status == 'TRADE_SUCCESS') {
+              console.log('支付成功')
+              setTimeout(() => {
+                if (this.openwindow) this.openwindow.close()
+              },6000)
+              Object.assign(obj, {complete: true})
+              clearInterval(this.pulling)
+              this.linkToPersonPage()
+            }
+            
+          } else {
+            console.log('支付不成功')
+          }
+          this.setState(obj)
+      }, err => {
+        console.log(err)
+        this.setState({text:err.message})
+      })
+    }, 2000)
+  }
+
+  linkToPersonPage() {
+    let { sessionToken } = this.props.view.user
+    $.ajax({
+      type: 'get',
+      url: 'http://ciniu.leanapp.cn/user',
+      headers: {'X-LC-Session': sessionToken},
+      success: res => {
+        store.dispatch(Action.updateUser(res))
+        setTimeout(() => {
+          this.props.history.push('/person')
+        }, 8000)
+      }
+    })
     
   }
 }

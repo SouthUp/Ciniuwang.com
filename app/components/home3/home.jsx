@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Nav from '../common/navigation'
 import Footer from '../common/footer'
 import css from 'Css2/home2'
@@ -30,10 +31,12 @@ class Home extends React.Component {
                 为文案与美工深度定制的word、excel套件与图片批量自动扫描工具。一键安装，不需要培训即可便捷使用
               </div>
               {/* 下载按钮 */}
+              <a href='http://www.ciniuwang.com/files/词牛客户端.zip'>
               <div className={css.download}>
                 <img src={require('Image3/98.png')} alt=""/>
                 <span>免费试用</span>
               </div>
+              </a>
               {/* 平台支持信息 */}
               <div className={css.platformList}> 
                 {platform.map(item => (

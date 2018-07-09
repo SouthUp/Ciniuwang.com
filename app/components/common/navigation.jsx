@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import css from 'Css2/nav'
 import { Link } from 'react-router-dom'
+
 
 class Navigation extends React.Component {
   constructor() {
@@ -10,10 +12,11 @@ class Navigation extends React.Component {
 
   render() {
     let incomingIndex = this.props.index
-    let isLogin = this.props.isLogin
+    let isLogin = false
     let currentStyle = { color: '#000' }
     let wrapStyle = this.props.bgColor? {backgroundColor: this.props.bgColor}: {}
     if (this.props.border) Object.assign(wrapStyle, this.props.border)
+    if (this.props.view.user) isLogin = true
     return (
       <div  style={wrapStyle}>
       <div className={css.frame}>
@@ -22,7 +25,7 @@ class Navigation extends React.Component {
           <ul className={css.list}>
             {list.map((item, index) => (
               <li key={item.name} style={index == incomingIndex ? currentStyle : {}}>
-                <Link to='/'>{item.name}</Link>
+                <Link to={item.url}>{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -48,8 +51,14 @@ class Navigation extends React.Component {
 
 const list = [
   { name: '首页', url: '/' },
-  { name: '产品介绍', url: '/home' },
-  { name: '试用与购买', url: '/pay' }
+  { name: '产品介绍', url: '/product' },
+  { name: '试用与购买', url: '/payhome' }
 ]
 
-export default Navigation
+const mapStateToProps = state => {
+  return {
+    view: state.view
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)

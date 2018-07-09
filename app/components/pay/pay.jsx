@@ -27,7 +27,6 @@ class Pay extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props.history)
     if (!this.props.view.user) this.props.history.replace('/login?from=pay')
   }
 

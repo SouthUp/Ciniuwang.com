@@ -22,7 +22,7 @@ class Footer extends React.Component {
             <div className={css.leftContent}>
               <img src={require('Image3/logo-22.png')} alt=""/>
               <div>
-                <span>QQ群：738740964</span>
+                <span>用户QQ群：738740964</span>
                 <span>邮箱：support@ciniuwang.com</span>
               </div>
             </div>
