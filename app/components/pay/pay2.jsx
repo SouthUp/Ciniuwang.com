@@ -49,7 +49,7 @@ class Pay extends React.Component {
   }
 
   render() {
-    let { width, height } = this.props.view
+    let { width, height, user } = this.props.view
     let contentStyle = { width, height}
     let { open, price, annualCount, pointIndex, invoiceClassify, invoiceType, invoiceTitle, invoiceId, address, email, name, phone, code, pay, id } = this.state
     let discountStyle = { backgroundImage: `url(${require('Image3/60.png')})` }
@@ -73,8 +73,8 @@ class Pay extends React.Component {
             {/* 用户信息 */}
             <div className={css.orderUser}>
               <div>
-                <span>用户名:</span>
-                <span>test</span>
+                <span>用户名: </span>
+                <span>{user.username}</span>
               </div>
             </div>
             {/* 购买信息 */}
