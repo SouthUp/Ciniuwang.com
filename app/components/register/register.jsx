@@ -48,7 +48,7 @@ class Login extends React.Component {
               src={pwdVisible?require('Image2/2.png'):require('Image2/1.png')} />
           </div>
           <div className={css.submitButton} onClick={this.submit.bind(this)}>确定</div>
-          <footer className={css.footer}>©  2018 - 2020 上海闻上信息科技有限公司</footer>
+          <footer className={css.footer}>©  2018 - 2020 上海冲南智能科技有限公司</footer>
         </div>
       </div>
     )

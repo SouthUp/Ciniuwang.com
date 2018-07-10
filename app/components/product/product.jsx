@@ -21,7 +21,7 @@ class Product extends React.Component {
             return (
               <div key={index} className={css.part}>
                 <title>{item.title}</title>
-                <video src={item.url} controls/>
+                <video src={item.url} autoPlay loop/>
               </div>
             )
           })}

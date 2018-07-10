@@ -42,44 +42,22 @@ class payHome extends React.Component {
               ))}
             </div>
             {/* 计费描述 */}
-            <div className={css.describe}>注:每500字文字检索扣3点（2018年9月30日前活动推广，文字检索不扣点）,每一张图片检索(含word/excel中的图片)扣8点</div>
+            <div className={css.describe}>注:当前为推广活动期间，文字检索不收费，图片检索每一张消耗8点</div>
             {/* 分类 */}
             <div className={css.type}>
-              {/* 企业版 */}
-              <div className={css.company}>
-                <title>企业版</title>
-                {/* 价格 */}
-                <div className={css.price}>
-                  999元/年
-                  <span className={css.special}>(限免)</span>
-                </div>
-                {/* 试用 */}
-                <div className={css.use + ' ' + css.disable}>
-                  <span>免费试用</span>
-                </div>
-                {/* 功能列表 */}
-                <ul className={css.list}>
-                  {companyList.map((item, index) => {
-                    return (
-                      <li key={index}>{item}</li>
-                    )
-                  })}
-                </ul>
-                {/* 购买按钮 */}
-                <div className={css.buy + ' ' + css.disable}>
-                  <span>立即购买</span>
-                </div>
-              </div>
+              
               {/* 个人版 */}
               <div className={css.person}>
-                <title>个人版</title>
+                <title>
+                  个人版
+                </title>
                 {/* 价格 */}
                 <div className={css.price}>
                   客户端免费
                 </div>
                 {/* 试用 */}
                 <div className={css.use}>
-                  <span>免费试用</span>
+                  <a href='http://www.ciniuwang.com/files/词牛客户端.zip'>立即免费试用</a>
                 </div>
                  {/* 功能列表 */}
                  <ul className={css.list}>
@@ -92,6 +70,32 @@ class payHome extends React.Component {
                 {/* 购买按钮 */}
                 <div className={css.buy}>
                   <Link to='/pay?type=person'><span>立即充值</span></Link>
+                </div>
+              </div>
+
+              {/* 企业版 */}
+              <div className={css.company}>
+                <title>企业版</title>
+                {/* 价格 */}
+                <div className={css.price}>
+                  999元/年
+                  <span className={css.special}>(限免)</span>
+                </div>
+                {/* 试用 */}
+                <div className={css.use + ' ' + css.disable}>
+                  <a>免费试用</a>
+                </div>
+                {/* 功能列表 */}
+                <ul className={css.list}>
+                  {companyList.map((item, index) => {
+                    return (
+                      <li key={index}>{item}</li>
+                    )
+                  })}
+                </ul>
+                {/* 购买按钮 */}
+                <div className={css.buy + ' ' + css.disable}>
+                  <span>立即购买</span>
                 </div>
               </div>
               

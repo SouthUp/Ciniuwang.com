@@ -1,7 +1,7 @@
 var $ = require('jquery')
 // const url = 'http://localhost:3000'
-// const url = 'http://ciniu.leanapp.cn'
-const url = 'http://stg-ciniu.leanapp.cn'
+const url = 'http://ciniu.leanapp.cn'
+// const url = 'http://stg-ciniu.leanapp.cn'
 
 module.exports = {
   createTrade(sessionToken, state) {

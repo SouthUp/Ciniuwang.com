@@ -3,6 +3,7 @@
     overflow: hidden;
     max-width: 1200px;
     margin: 0 auto;
+    display: none;
 }
 
 .connect button {
@@ -10,7 +11,7 @@
     float: right;
     width: 120px;
     height: 38px;
-    line-height: 38px;
+    line-height: 34px;
     border: 2px solid #18be27;
     border-radius: 4px;
     background-color: #18be27;
@@ -149,6 +150,14 @@
     color: #3d464a;
     height: 21px;
     line-height: 21px;
+    position: relative;
+}
+
+.type > div > title > span {
+    position: absolute;
+    right: 118px;
+    font-size: 15px;
+    line-height: 26px;
 }
 
 .price {
@@ -177,7 +186,7 @@
     margin-bottom: 40px;
 }
 
-.use span {
+.use a {
     display: inline-block;
     width: 160px;
     height: 56px;
@@ -185,11 +194,13 @@
     text-align: center;
     border-radius: 4px;
     background-color: #ff8f00;
-    color: #fff;
+    color: #fff!important;
+    cursor: pointer;
 }
 
-.use.disable span {
+.use.disable a {
     background-color: rgba(188,195,212, .26);
+    cursor: default;
 }
 
 .list li {
