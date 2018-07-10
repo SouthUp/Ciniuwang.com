@@ -80,9 +80,9 @@ class Login extends React.Component {
         store.dispatch(action.setUser(res))
         console.log(res)
         if (window.location.search.indexOf('pay') !== -1) {
-          this.props.history.push('/pay')
+          this.props.history.replace('/pay')
         } else {
-          this.props.history.push('/person')
+          this.props.history.replace('/person')
         }
 
       },

@@ -63,7 +63,7 @@ class Home extends React.Component {
 
 const platform = [
   { icon: require('Image3/101.png'), text: '支持 Windows 10/8/7 32 / 64-bit'},
-  { icon: require('Image3/100.png'), text: '支持微软 Word 和 Excel 2010 / 2013 / 2016（暂不支持office 365）'},
+  { icon: require('Image3/100.png'), text: '支持微软 Word 和 Excel 2010 / 2013 / 2016'},
   { icon: require('Image3/102.png'), text: '支持JPEG / PNG'},
   { icon: require('Image3/2.png'), text: '用户QQ群：738740964<br/>客服微信号：ciniu2018'}
 ]

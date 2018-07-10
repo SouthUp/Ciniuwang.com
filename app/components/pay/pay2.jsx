@@ -178,10 +178,14 @@ class Pay extends React.Component {
           <section className={css.invoice}>
             <span className={css.tag} >发票信息</span>
             <div className={css.invoiceDetail} id={open?'':css.notOpen}>
-              <div className={css.selectItem} id={css.open}>
+              {/* <div className={css.selectItem} id={css.open}>
                 <img style={open ? {} : hidden} src={require('Image3/104.png')} onClick={this.open.bind(this)} />
                 <img style={open ? hidden : {}} src={require('Image3/103.png')} onClick={this.open.bind(this)} />
                 <span>不开发票</span>
+              </div> */}
+              <div>
+                <TypeSelect name='不开发票' select={this.open.bind(this, false)} isSelect={!open} />
+                <TypeSelect name='开发票' select={this.open.bind(this, true)} isSelect={open} />
               </div>
               {/* 发票类型 */}
               <div>
@@ -275,8 +279,8 @@ class Pay extends React.Component {
     this.setState({ invoiceType })
   }
 
-  open() {
-    this.setState({ open: !this.state.open })
+  open(open) {
+    this.setState({ open })
   }
 
   input(type, event) {

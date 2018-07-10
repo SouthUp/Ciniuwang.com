@@ -136,11 +136,11 @@
 
 .type > div:first-child {
     margin-right: 25px;
-    border-top-color: rgba(188,195,212, .26)
+    border-top-color: #ff8f00;
 }
 
 .type > div:last-child {
-    border-top-color: #ff8f00;
+    border-top-color: rgba(188,195,212, .26)
 }
 
 .type > div > title {
