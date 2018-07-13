@@ -96,6 +96,7 @@
     display: flex;
     flex-flow: row wrap;
     max-width: 448px;
+    user-select: text;
 }
 
 .platformItem {
@@ -120,6 +121,7 @@
 
 .platformItem img {
     margin-right: 15px;
+    user-select: none;
 }
 
 .platformItem span {

@@ -15,7 +15,7 @@ class Footer extends React.Component {
         <div className={css.content}>
           <ul className={css.list}>
             {list.map(item => (
-              <li key={item.name}><a style={item.disable?disableStyle:{}}  href={item.href}>{item.name}</a></li>
+              <li onClick={this.click.bind(this, item)} key={item.name}><a style={item.disable?disableStyle:{}}  href={item.href}>{item.name}</a></li>
             ))}
           </ul>
           <div className={css.line}/>
@@ -25,6 +25,7 @@ class Footer extends React.Component {
               <div>
                 <span>用户QQ群：738740964</span>
                 <span>邮箱：support@ciniuwang.com</span>
+                <span>联系电话：+8621-60782337</span>
               </div>
             </div>
             <div className={css.rightContent}>
@@ -38,6 +39,12 @@ class Footer extends React.Component {
         </div>
       </div>
     )
+  }
+
+  click(item) {
+    if (item.href) {
+      window.__bl && __bl.sum('download-footer', 1)
+    }
   }
 }
 

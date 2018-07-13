@@ -57,7 +57,7 @@ class payHome extends React.Component {
                 </div>
                 {/* 试用 */}
                 <div className={css.use}>
-                  <a href='http://www.ciniuwang.com/files/词牛客户端.zip'>立即免费试用</a>
+                  <a onClick={this.download.bind(this)} href='http://www.ciniuwang.com/files/词牛客户端.zip'>立即免费试用</a>
                 </div>
                  {/* 功能列表 */}
                  <ul className={css.list}>
@@ -106,6 +106,10 @@ class payHome extends React.Component {
         <Footer />
       </div>
     )
+  }
+
+  download() {
+    window.__bl && __bl.sum('download-pay', 1)
   }
 }
 

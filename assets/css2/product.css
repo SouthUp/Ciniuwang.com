@@ -4,10 +4,17 @@
     padding-top: 72px;
 }
 
-.part title {
+.content > title {
     text-align: center;
-    font-size: 44px;
-    font-weight: 500;
+    font-size: 34px;
+    color: #3d464a;
+    margin-bottom: 80px;
+}
+
+.part title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
     color: #3d464a;
     line-height: 41px;
     margin-bottom: 40px;
