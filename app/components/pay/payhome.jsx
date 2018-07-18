@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import css from 'Css2/payhome'
 import Nav from '../common/navigation'
 import Footer from '../common/footer'
@@ -110,6 +111,7 @@ class payHome extends React.Component {
 
   download() {
     window.__bl && __bl.sum('download-pay', 1)
+    _hmt.push(['_trackEvent', 'download', 'click', this.props.view.query])
   }
 }
 
@@ -139,4 +141,10 @@ const personList = [
   '违禁词批量检查工具 - 批量检索word、excel、jpg图片、png图片中的违禁词'
 ]
 
-module.exports = payHome
+var mapStateToProps = state => {
+  return {
+    view: state.view
+  }
+}
+
+export default connect(mapStateToProps)(payHome)

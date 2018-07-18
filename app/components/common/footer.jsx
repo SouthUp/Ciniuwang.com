@@ -1,6 +1,6 @@
 import React from 'react'
 import css from 'Css2/footer'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Footer extends React.Component {
   constructor() {
@@ -44,6 +44,7 @@ class Footer extends React.Component {
   click(item) {
     if (item.href) {
       window.__bl && __bl.sum('download-footer', 1)
+      _hmt.push(['_trackEvent', 'download', 'click', this.props.view.query])
     }
   }
 }
@@ -55,5 +56,10 @@ const list = [
   { name: '联系我们', disable: true}
 ]
 
+var mapStateToProps = state => {
+  return {
+    view: state.view
+  }
+}
 
-export default Footer
+export default connect(mapStateToProps)(Footer)

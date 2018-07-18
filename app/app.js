@@ -23,6 +23,8 @@ import 'Font/font.css'
 import store from './store/store'
 import Action from './action/action'
 
+import lib from './lib'
+
 class App extends React.Component {
   constructor() {
     super()
@@ -33,6 +35,8 @@ class App extends React.Component {
     window.onresize = function() {
       store.dispatch(Action.setSize(document.body.offsetWidth, document.body.offsetHeight))
     }
+
+    store.dispatch(Action.setQuery(lib.getInfor()))
   }
 
   render() {

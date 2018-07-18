@@ -9,7 +9,7 @@ module.exports = {
       let send_data = state
       $.ajax({
         type: 'POST',
-        url: `${url}/pay/2`,
+        url: `${url}/pay`,
         headers: {'X-LC-Session': sessionToken},
         dataType: 'json',
         data: send_data,

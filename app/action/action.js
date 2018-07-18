@@ -1,3 +1,4 @@
+
 export default {
   setSize(width, height) {
     return {
@@ -49,6 +50,13 @@ export default {
   loginOut() {
     return {
       type: 'LOGIN_OUT'
+    }
+  },
+
+  setQuery(query) {
+    return {
+      type: 'SET_QUERY',
+      query
     }
   }
 }

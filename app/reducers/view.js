@@ -2,7 +2,8 @@ const defaultState = {
   width : document.body.clientWidth - 18,
   height : document.body.clientHeight > 500? document.body.clientHeight: 500,
   scrollTop: 0,
-  user: null
+  user: null,
+  query: ''
 }
 
 const viewState = (state = defaultState, action) => {
@@ -30,6 +31,11 @@ const viewState = (state = defaultState, action) => {
     case 'LOGIN_OUT':
       return Object.assign({}, state, {
         user: null
+      })
+
+    case 'SET_QUERY':
+      return Object.assign({}, state, {
+        query: action.query
       })
     default:
       return state
