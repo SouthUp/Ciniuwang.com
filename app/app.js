@@ -53,7 +53,7 @@ class App extends React.Component {
           <Route exact path='/payhome' component={Payhome}/>
           <Route exact path='/pay' component={Pay2}/>
           <Route exact path='/paid' component={Paid}/>
-          {/* <Route exact path='/download' component={Download}/> */}
+          <Route exact path='/download' component={Home3}/>
           {/* <Route exact path='/pay' component={Pay}/> */}
           {/* <Route exact path='/support' component={Support}/> */}
           <Route component={NoMatch}/>

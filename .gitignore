@@ -8,3 +8,4 @@ files/
 .DS_Store
 app/.DS_Store
 assets/.DS_Store
+.leancloud/

@@ -100,6 +100,16 @@ class Login extends React.Component {
   }
 
   submit(e) {
+    let sale = ''
+    let query = this.props.view.query
+    if (query) {
+      let vars = query.split('&')
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=")
+        if (pair[0] == 'id') sale = pair[1]
+      }
+    }
+    console.log(`sale is : ${sale}`)
     let { username, password, code } = this.state
     if (!username) return this.setState({text: '手机号不能为空'})
     if (!code) return this.setState({text: '验证码不能为空'})
@@ -108,7 +118,7 @@ class Login extends React.Component {
       type: 'POST',
       url: 'http://ciniu.leanapp.cn/user',
       dataType: 'json',
-      data: {username, password, code},
+      data: { username, password, code, sale },
       success: (res) => {
         console.log(res)
         store.dispatch(Action.setUser(res))

@@ -4,9 +4,9 @@ export default {
     let id = getQueryVariable('id')
     if (!id) return string
     else string += `id=${id}`
-    let type  = getQueryVariable('type')
-    if (!type) return string
-    else string += `&type=${type}`
+    // let type  = getQueryVariable('type')
+    // if (!type) return string
+    // else string += `&type=${type}`
     return string
   }
 }
