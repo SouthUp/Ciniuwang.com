@@ -1,6 +1,7 @@
 import React from 'react'
 import css from 'Css2/footer'
 import { connect } from 'react-redux'
+import { Link, Route } from 'react-router-dom'
 
 class Footer extends React.Component {
   constructor() {
@@ -8,14 +9,29 @@ class Footer extends React.Component {
     this.state = {}
   }
 
+  componentDidMount() {
+    document.documentElement.scrollTop = 0
+  }
+
   render() {
     let disableStyle = {cursor: 'not-allowed', opacity:'.5'}
+    console.log(this.props)
     return (
       <div className={css.container}>
         <div className={css.content}>
           <ul className={css.list}>
             {list.map(item => (
-              <li onClick={this.click.bind(this, item)} key={item.name}><a style={item.disable?disableStyle:{}}  href={item.href}>{item.name}</a></li>
+              <li onClick={this.click.bind(this, item)} key={item.name}>
+                {item.href?
+                  <a href={item.href}>{item.name}</a>
+                : null}
+                {item.link?
+                  <Link to={item.link}>{item.name}</Link>:
+                  null}
+                {item.disable?
+                  <a style={disableStyle} href={item.href}>{item.name}</a>:
+                  null}
+              </li>
             ))}
           </ul>
           <div className={css.line}/>
@@ -42,7 +58,7 @@ class Footer extends React.Component {
   }
 
   click(item) {
-    if (item.href) {
+    if (item.href && !item.link) {
       window.__bl && __bl.sum('download-footer', 1)
       _hmt.push(['_trackEvent', 'download', 'click', this.props.view.query])
     }
@@ -50,10 +66,11 @@ class Footer extends React.Component {
 }
 
 const list = [
-  { name: 'FAQ', disable: true},
+  { name: 'FAQ', disable: true,},
   { name: '下载', disable: false, href: 'http://www.ciniuwang.com/files/词牛客户端.zip'},
   { name: '联系销售', disable: true},
-  { name: '联系我们', disable: true}
+  { name: '联系我们', disable: true},
+  { name: '关于我们', disable: false, link: 'about'}
 ]
 
 var mapStateToProps = state => {

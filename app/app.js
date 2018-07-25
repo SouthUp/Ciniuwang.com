@@ -17,6 +17,7 @@ import Product from './components/product/product'
 import Payhome from './components/pay/payhome'
 import Pay2 from './components/pay/pay2'
 import Paid from './components/paid/paid'
+import About from './components/support/about'
 
 import css from 'Css/index.css'
 import 'Font/font.css'
@@ -54,6 +55,7 @@ class App extends React.Component {
           <Route exact path='/pay' component={Pay2}/>
           <Route exact path='/paid' component={Paid}/>
           <Route exact path='/download' component={Home3}/>
+          <Route exact path='/about' component={About}/>
           {/* <Route exact path='/pay' component={Pay}/> */}
           {/* <Route exact path='/support' component={Support}/> */}
           <Route component={NoMatch}/>

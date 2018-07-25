@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Nav from '../common/navigation'
-import lib from '../../lib'
 import Footer from '../common/footer'
 import css from 'Css2/home2'
 
