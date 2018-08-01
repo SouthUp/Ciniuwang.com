@@ -6,7 +6,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-console.log(path.join(__dirname, 'public'))
+
 module.exports = {
   // 项目入口文件
   entry: {

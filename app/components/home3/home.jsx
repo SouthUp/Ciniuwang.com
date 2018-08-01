@@ -23,14 +23,14 @@ class Home extends React.Component {
           <div className={css.contentMain}>
             <div className={css.contentLeft}>
               {/* 软件标题 */}
-              <title>词牛套件 1.0.3</title>
+              <title>词牛套件 1.0.4</title>
               {/* 软件描述 */}
               <div className={css.description}>
                 为文案与美工深度定制的word、excel套件与图片批量自动扫描工具。一键安装，不需要培训即可便捷使用
               </div>
               {/* 下载按钮 */}
               <div className={css.downloadWrap}>
-                <a onClick={this.download.bind(this)} href='http://www.ciniuwang.com/files/词牛客户端.zip'>
+                <a onClick={this.download.bind(this)} href={this.getUrl()}>
                   <div className={css.download}>
                     <img src={require('Image3/98.png')} alt="" />
                     <span>免费试用</span>
@@ -56,6 +56,26 @@ class Home extends React.Component {
         <Footer />
       </div>
     )
+  }
+
+  getUrl() {
+    let query = this.props.view.query
+    let url = 'http://www.ciniuwang.com/files'
+    let sale = ''
+    if (query) {
+      let vars = query.split('&')
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=")
+        if (pair[0] == 'id') sale = pair[1]
+      }
+    }
+
+    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale) ) url += `/${sale}`
+
+    url += '/词牛客户端.zip'
+
+    return url
+     
   }
 
   download() {

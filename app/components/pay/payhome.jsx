@@ -58,7 +58,7 @@ class payHome extends React.Component {
                 </div>
                 {/* 试用 */}
                 <div className={css.use}>
-                  <a onClick={this.download.bind(this)} href='http://www.ciniuwang.com/files/词牛客户端.zip'>立即免费试用</a>
+                  <a onClick={this.download.bind(this)} href={this.getUrl()}>立即免费试用</a>
                 </div>
                  {/* 功能列表 */}
                  <ul className={css.list}>
@@ -112,6 +112,25 @@ class payHome extends React.Component {
   download() {
     window.__bl && __bl.sum('download-pay', 1)
     _hmt.push(['_trackEvent', 'download', 'click', this.props.view.query])
+  }
+
+  getUrl() {
+    let query = this.props.view.query
+    let url = 'http://www.ciniuwang.com/files'
+    let sale = ''
+    if (query) {
+      let vars = query.split('&')
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=")
+        if (pair[0] == 'id') sale = pair[1]
+      }
+    }
+
+    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale) ) url += `/${sale}`
+
+    url += '/词牛客户端.zip'
+
+    return url
   }
 }
 
