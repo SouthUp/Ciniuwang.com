@@ -58,5 +58,20 @@ export default {
       type: 'SET_QUERY',
       query
     }
+  },
+
+  inputSearch(word) {
+    return {
+      type: 'INPUT_SEARCH',
+      word
+    }
+  },
+
+  toggeleSearch(toggle) {
+    return {
+      type: 'TOGGLE_SEARCH',
+      toggle
+    }
   }
-}
+
+ }

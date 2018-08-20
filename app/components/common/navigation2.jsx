@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Search from './search'
 import css from 'Css2/nav2'
 import { Link } from 'react-router-dom'
 
@@ -14,12 +15,17 @@ class Navigation extends React.Component {
     let incomingIndex = this.props.index
     let isLogin = false
     if (this.props.view.user) isLogin = true
+    let { toggle } = this.props.search
     let fontStyle = { color: 'rgba(0, 0, 0, 87)' }
     return (
-      <div className={css.frame}>
+      <div className={css.frame} style={toggle?{}:{marginTop: '30px'}}>
         <nav>
           <ul>
-            <li style={incomingIndex == 0?fontStyle:{}}><Link to={'/home'}>在线查词</Link></li>
+            {toggle?(
+              <li style={incomingIndex == 0?fontStyle:{}}><Link to={'/'}>在线查词</Link></li>
+            ): (
+              <li><Search/></li>
+            )}
             <li style={incomingIndex == 1?fontStyle:{}}><Link to={'/download'}>客户端下载</Link></li>
           </ul>
 
@@ -71,7 +77,8 @@ class Navigation extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    view: state.view
+    view: state.view,
+    search: state.search
   }
 }
 

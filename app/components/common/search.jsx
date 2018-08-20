@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import css from 'Css2/nav'
-import { Link } from 'react-router-dom'
+import css from 'Css2/search'
+import store from '../../store/store'
+import action from '../../action/action'
 
 
 class Search extends React.Component {
@@ -11,12 +12,30 @@ class Search extends React.Component {
   }
 
   render() {
-    if (this.props.view.user) isLogin = true
+    console.log()
+    let { word } = this.props.search
     return (
-      <div  style={wrapStyle}>
-      
+      <div className={css.frame}>
+        <img src={require('Image3/logo-3.png')} alt=""/>
+        <input type="text" placeholder='支持筛查6个字以内的违禁词'
+          onChange={this.input.bind(this)} value={word} onKeyPress={this.key.bind(this)}/>
+        <span onClick={this.search.bind(this)}>筛查</span>
       </div>
     )
+  }
+
+  input(e) {
+    store.dispatch(action.inputSearch(e.target.value))
+  }
+
+  key(e){
+    if (e.nativeEvent.keyCode == 13) {
+      this.search()
+    }
+  }
+ 
+  search() {
+    store.dispatch(action.toggeleSearch(false))
   }
 }
 
@@ -24,7 +43,7 @@ class Search extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    view: state.view
+    search: state.search
   }
 }
 

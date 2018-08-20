@@ -41,12 +41,11 @@ class App extends React.Component {
     return (
       <div className='index-wrap' style={{position: 'relative'}}>
         <Switch>
-          <Route exact path='/' component={Home3}/>
+          <Route exact path='/' component={Home4}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/password' component={Password}/>
           <Route exact path='/person' component={Person}/>
-          <Route exact path='/home' component={Home3}/>
           <Route exact path='/payhome' component={Payhome}/>
           <Route exact path='/pay' component={Pay2}/>
           <Route exact path='/paid' component={Paid}/>
