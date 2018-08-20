@@ -14,36 +14,36 @@ class Navigation extends React.Component {
     let incomingIndex = this.props.index
     let isLogin = false
     let currentStyle = { color: '#000' }
-    let wrapStyle = this.props.bgColor? {backgroundColor: this.props.bgColor}: {}
+    let wrapStyle = this.props.bgColor ? { backgroundColor: this.props.bgColor } : {}
     if (this.props.border) Object.assign(wrapStyle, this.props.border)
     if (this.props.view.user) isLogin = true
     return (
-      <div  style={wrapStyle}>
-      <div className={css.frame}>
-        <nav className={css.container}>
-          <Link to='/' className={css.logo}><img src={require('Image3/logo-2.png')} alt="" /></Link>
-          <ul className={css.list}>
-            {list.map((item, index) => (
-              <li key={item.name} style={index == incomingIndex ? currentStyle : {}}>
-                <Link to={item.url}>{item.name}</Link>
-              </li>
-            ))}
-          </ul>
-
-
-          {!isLogin ? (
-            <ul className={css.userInfo}>
-              <li><Link to='/login'>登录</Link></li>
-              <li>|</li>
-              <li><Link to='/register'>注册</Link></li>
+      <div style={wrapStyle}>
+        <div className={css.frame}>
+          <nav className={css.container}>
+            <Link to='/' className={css.logo}><img src={require('Image3/logo-2.png')} alt="" /></Link>
+            <ul className={css.list}>
+              {list.map((item, index) => (
+                <li key={item.name} style={index == incomingIndex ? currentStyle : {}}>
+                  <Link to={item.url}>{item.name}</Link>
+                </li>
+              ))}
             </ul>
-          ) : (
+
+
+            {!isLogin ? (
               <ul className={css.userInfo}>
-                <li><Link to='/person'>个人中心</Link></li>
+                <li><Link to='/login'>登录</Link></li>
+                <li>|</li>
+                <li><Link to='/register'>注册</Link></li>
               </ul>
-            )}
-        </nav>
-      </div>
+            ) : (
+                <ul className={css.userInfo}>
+                  <li><Link to='/person'>个人中心</Link></li>
+                </ul>
+              )}
+          </nav>
+        </div>
       </div>
     )
   }

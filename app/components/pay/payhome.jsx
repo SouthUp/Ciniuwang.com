@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import css from 'Css2/payhome'
-import Nav from '../common/navigation'
+import Nav from '../common/navigation2'
 import Footer from '../common/footer'
 
 class payHome extends React.Component {

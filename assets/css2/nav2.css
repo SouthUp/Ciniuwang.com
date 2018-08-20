@@ -1,0 +1,41 @@
+.frame {
+    width: 100%;
+    height: 80px;
+}
+
+.frame > nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.frame > nav > ul:nth-child(1) { 
+    float: left;
+    font-size: 14px;
+ }
+
+.frame > nav > ul:nth-child(2) { 
+    float: right;
+    font-size: 12px;
+}
+
+.frame > nav > ul:nth-child(1) > li:nth-child(2) {
+    margin-left: 55px;
+}
+
+.frame > nav > ul:nth-child(2) > li:nth-child(2) {
+    margin-left: 25px;
+}
+
+.frame > nav > ul:nth-child(2) img {
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+}
+
+.frame > nav > ul li {
+    float: left;
+    height: 80px;
+    line-height: 80px;
+    color: rgba(0, 0, 0, .38)
+}

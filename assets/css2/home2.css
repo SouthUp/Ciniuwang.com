@@ -49,13 +49,28 @@
     margin-bottom: 49px;
 }
 
-.download {
+.btWrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.btWrap a:nth-child(1) .bt {
+    margin-right: 10px;
+    border: 1px solid #48a931;
+    background-color: #18be27;
+}
+
+.btWrap a:nth-child(2) .bt {
+    border: 1px solid #ff8f00;
+    background-color: #ff8f00;
+}
+
+.bt {
     width: 160px;
     height: 48px;
     line-height: 48px;
-    border: 1px solid #48a931;
     border-radius: 4px;
-    background-color: #18be27;
     color: #fff;
     font-size: 18px;
     box-sizing: border-box;
@@ -63,25 +78,24 @@
     font-weight: 500;
     margin-bottom: 49px;
     position: relative;
+    float: left;
 }
 
-.download img {
+.bt img {
     vertical-align: middle;
     margin: -3px 19px 0 26px;
     height: 18px;
 }
 
-.download span {
+.bt span {
     height: 18px;
     line-height: 18px;
     display: inline-block;
 }
 
-.downloadWrap {
-    position: relative;
-}
 
-.downloadWrap span:first-child {
+
+.btWrap span:first-child {
     position: absolute;
     top: 31px;
     right: 164px;

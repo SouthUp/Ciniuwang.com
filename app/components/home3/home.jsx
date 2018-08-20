@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Nav from '../common/navigation'
+import { Link } from 'react-router-dom'
+import Nav from '../common/navigation2'
+import Product from '../product/product'
 import Footer from '../common/footer'
 import css from 'Css2/home2'
 
@@ -28,15 +30,22 @@ class Home extends React.Component {
               <div className={css.description}>
                 为文案与美工深度定制的word、excel套件与图片批量自动扫描工具。一键安装，不需要培训即可便捷使用
               </div>
-              {/* 下载按钮 */}
-              <div className={css.downloadWrap}>
+              {/* 按钮 */}
+              <div className={css.btWrap}>
+
                 <a onClick={this.download.bind(this)} href={this.getUrl()}>
-                  <div className={css.download}>
+                  <div className={css.bt}>
                     <img src={require('Image3/98.png')} alt="" />
                     <span>免费试用</span>
-
                   </div>
                 </a>
+
+                <Link to={'/payhome'}>
+                  <div className={css.bt}>
+                    <img src={require('Image3/1.png')} alt="" />
+                    <span>购买点数</span>
+                  </div>
+                </Link>
               </div>
               {/* 平台支持信息 */}
               <div className={css.platformList}>
@@ -53,6 +62,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
+        <Product />
         <Footer />
       </div>
     )
@@ -70,12 +80,12 @@ class Home extends React.Component {
       }
     }
 
-    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale) ) url += `/${sale}`
+    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale)) url += `/${sale}`
 
     url += '/词牛客户端.zip'
 
     return url
-     
+
   }
 
   download() {
