@@ -5,7 +5,7 @@ import store from '../../store/store'
 import Action from '../../action/action'
 import css from 'Css2/pay2'
 import Snackbar from '../common/snackbar'
-import Nav from '../common/navigation'
+import Nav from '../common/navigation2'
 import Footer from '../common/footer'
 import { createTrade, queryTrade } from './lib.js'
 var $ = require('jquery')

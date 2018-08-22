@@ -72,6 +72,24 @@ export default {
       type: 'TOGGLE_SEARCH',
       toggle
     }
+  },
+
+  loading(loading) {
+    return {
+      type: 'LOADING',
+      loading
+    }
+  },
+
+  setData(data) {
+    return {
+      type: 'SET_DATA',
+      data
+    }
+  },
+
+  clear() {
+    return { type: 'CLEAR'}
   }
 
  }

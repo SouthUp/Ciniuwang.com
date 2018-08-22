@@ -1,18 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Snackbar from '../common/snackbar'
 import css from 'Css2/search'
 import store from '../../store/store'
 import action from '../../action/action'
-
+var $ = require('jquery')
 
 class Search extends React.Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      text: ''
+    }
   }
 
   render() {
-    console.log()
     let { word } = this.props.search
     return (
       <div className={css.frame}>
@@ -20,6 +22,7 @@ class Search extends React.Component {
         <input type="text" placeholder='支持筛查6个字以内的违禁词'
           onChange={this.input.bind(this)} value={word} onKeyPress={this.key.bind(this)}/>
         <span onClick={this.search.bind(this)}>筛查</span>
+        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
       </div>
     )
   }
@@ -35,7 +38,32 @@ class Search extends React.Component {
   }
  
   search() {
+    let { word, loading } = this.props.search
+    if (word.length > 6) return this.setState({ text: '在线查词只支持六字以内'})
+    if (word.length == 0) return store.dispatch(action.clear())
+    
+    if (loading) return 
     store.dispatch(action.toggeleSearch(false))
+    store.dispatch(action.loading(true))
+    $.ajax({
+      type: 'POST',
+      url: 'https://ciniu.leanapp.cn/v1.0/words/freeQuery',
+      dataType: 'json',
+      data: { word: this.props.search.word },
+      success: (res) => {
+        store.dispatch(action.setData(res))
+      },
+      error: err => {
+        console.log(err)
+        store.dispatch(action.loading(false))
+        this.setState({text: err.message})
+        
+      }
+    })
+  }
+
+  clearText() {
+    this.setState({text: ''})
   }
 }
 

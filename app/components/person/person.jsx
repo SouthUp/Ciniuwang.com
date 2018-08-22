@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../common/navigation'
+import Nav from '../common/navigation2'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import store from '../../store/store'
@@ -32,7 +32,7 @@ class Person extends React.Component {
 
     return (
       <div id={css.frame} style={frameStyle}>
-        <Nav/>
+        <Nav index={3}/>
         <div className={css.content}>
           <img src={require('Image2/11.png')}/>
           <div className={css.title}>个人信息</div>

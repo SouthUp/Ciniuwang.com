@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Nav from '../common/navigation'
+import Nav from '../common/navigation2'
 import Footer from '../common/footer'
 
 const contentStyle = {

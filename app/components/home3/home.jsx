@@ -19,7 +19,7 @@ class Home extends React.Component {
     let mainStyle = { width, height }
     return (
       <div style={mainStyle}>
-        <Nav index={0} isLogin={isLogin} />
+        <Nav index={1} isLogin={isLogin} />
         <div className={css.content}>
           <title>词牛，让违禁词无处可藏</title>
           <div className={css.contentMain}>

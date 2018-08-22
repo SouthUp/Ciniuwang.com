@@ -33,7 +33,7 @@ class Navigation extends React.Component {
             {isLogin ? (
               <li>
                 <img src={require('Image3/3.png')} alt="" />
-                <Link to='/person'>个人中心</Link>
+                <Link to='/person' style={incomingIndex == 3?fontStyle:{}}>个人中心</Link>
               </li>
             ) : (
                 <li>
@@ -45,7 +45,7 @@ class Navigation extends React.Component {
               )
             }
 
-            <li>
+            <li style={{display: 'none'}}>
               <img src={require('Image3/7.png')} alt="" />
               <span style={{ cursor: 'pointer' }} onClick={this.fav.bind(this)}>收藏本站</span>
             </li>
