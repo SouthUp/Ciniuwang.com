@@ -2,6 +2,8 @@
     width: 100%;
     height: 380px;
     background-color: #142030;
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
 .content {
@@ -10,10 +12,11 @@
 }
 
 .list {
-    height: 95px;
+    /* height: 95px; */
     line-height: 95px;
     font-size: 14px;
     color: rgba(255, 255, 255, .54);
+    overflow: hidden;
 }
 
 .list li {
@@ -66,4 +69,29 @@
 
 .rightContent div span:first-child {
     margin-right: 26px;
+}
+
+@media screen and (max-width: 600px) {
+    .list li { 
+        float: none;
+        line-height: 55px;
+     }
+
+    .bottom > div {
+        float: none;
+        width: 100%;
+    }
+
+    .leftContent { 
+        margin-bottom: 20px;
+    }
+
+    .rightContent > div {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .rightContent {
+        text-align: left;
+    }
 }

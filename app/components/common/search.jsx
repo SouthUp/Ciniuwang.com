@@ -15,15 +15,18 @@ class Search extends React.Component {
   }
 
   render() {
-    let { word } = this.props.search
+    let { word, data } = this.props.search
     let { style } = this.props
     return (
-      <div className={css.frame}>
-        <img onClick={this.clear.bind(this)} style={style || {}} src={require('Image3/logo-3.png')} alt=""/>
-        <input type="text" placeholder='支持筛查6个字以内的违禁词'
-          onChange={this.input.bind(this)} value={word} onKeyPress={this.key.bind(this)}/>
-        <span onClick={this.search.bind(this)}>筛查</span>
-        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)}/>
+      <div className={data?css.withData:null}>
+        <div className={css.frame}>
+          <img onClick={this.clear.bind(this)} style={style || {}} src={require('Image3/logo-3.png')} alt="" />
+          <input type="text" placeholder='支持筛查6个字以内的违禁词'
+            onChange={this.input.bind(this)} value={word} onKeyPress={this.key.bind(this)} />
+          <span onClick={this.search.bind(this)}>筛查</span>
+
+        </div>
+        <Snackbar text={this.state.text} clearText={this.clearText.bind(this)} />
       </div>
     )
   }
@@ -32,18 +35,18 @@ class Search extends React.Component {
     store.dispatch(action.inputSearch(e.target.value))
   }
 
-  key(e){
+  key(e) {
     if (e.nativeEvent.keyCode == 13) {
       this.search()
     }
   }
- 
+
   search() {
     let { word, loading } = this.props.search
-    if (word.length > 6) return this.setState({ text: '在线查词只支持六字以内'})
+    if (word.length > 6) return this.setState({ text: '在线查词只支持六字以内' })
     if (word.length == 0) return store.dispatch(action.clear())
-    
-    if (loading) return 
+
+    if (loading) return
     store.dispatch(action.toggeleSearch(false))
     store.dispatch(action.loading(true))
     $.ajax({
@@ -57,14 +60,14 @@ class Search extends React.Component {
       error: err => {
         console.log(err)
         store.dispatch(action.loading(false))
-        this.setState({text: err.message})
-        
+        this.setState({ text: err.message })
+
       }
     })
   }
 
   clearText() {
-    this.setState({text: ''})
+    this.setState({ text: '' })
   }
 
   clear() {

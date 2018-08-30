@@ -1,5 +1,7 @@
 .wrap {
     overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 350px;
 }
 
 .wrap pre {
@@ -14,6 +16,7 @@ word-wrap: break-word;
     align-items: center;
     width: 704px;
     height: 60px;
+    margin: 0 auto;
 }
 
 .frame > img {
@@ -21,10 +24,11 @@ word-wrap: break-word;
 }
 
 .frame input {
-    width: 540px;
+    flex-grow: 1;
     height: 60px;
     box-sizing: border-box;
     border: 1px solid #332250;
+    border-right-width: 0px;
     padding-left: 16px;
     font-size: 16px;
 }
@@ -66,7 +70,11 @@ word-wrap: break-word;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding-bottom: 30px;
+    padding: 0 30px 30px;
+}
+
+.content > div {
+    width: 100%;
 }
 
 .loading {
@@ -98,11 +106,11 @@ word-wrap: break-word;
 
 
 .footerWrap {
-    /* position: absolute; */
     margin-top: 200px;
     margin-bottom: 100px;
-    bottom: 276px;
     width: 100%;
+    box-sizing: border-box;
+    padding: 0 30px;
 }
 
 .footer {
@@ -189,3 +197,68 @@ word-wrap: break-word;
     position: relative;
     left: 69px;
 }
+
+.withData {
+    
+}
+
+@media screen and (max-width: 750px) {
+    .frame {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .frame {
+        width: 100%;
+    }
+
+    .frame span {
+        width: 70px;
+    }
+
+    .footer {
+        flex-flow: column nowrap;
+    }
+
+    .frame > img {
+        margin-right: 10px;
+    }
+
+    .content {
+        padding: 0 10px 15px;
+    }
+
+    .footer > div {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .frame {
+        width: 100%;
+    }
+
+    .frame input {
+        padding-left: 6px;
+    }
+
+    
+} 
+
+/* @media screen and (max-width: 650px) {
+    .frame {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .frame {
+        width: 400px;
+    }
+}
+
+
+
+
+*/

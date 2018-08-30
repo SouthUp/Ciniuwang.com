@@ -19,9 +19,8 @@ class Home extends React.Component {
   }
 
   render() {
-    let { width, height, user } = this.props.view
-    let { word, toggle, loading, data } = this.props.search
-    let isLogin = false
+    let { width, height } = this.props.view
+    let { toggle, loading, data } = this.props.search
     let footerStyle = {}
     if (!data && height > 911) footerStyle={position: 'fixed', bottom: '0px'}
     if (data) footerStyle = {display: 'none'}
@@ -29,15 +28,19 @@ class Home extends React.Component {
     let mainStyle = { width, height, position: 'relative'}
     if (data) Object.assign(contentStyle, {alignItems: 'flex-start', paddingTop: '53px'})
     if (data && !data.result) Object.assign(contentStyle, {marginBottom: '400px'})
-    if (user) isLogin = true
     return (
       <div style={mainStyle} className={css.wrap}>
+        {/* 导航栏 */}
         <Nav index={0}/>
+
+        {/* 搜索框/加载动画/搜索结果 */}
         <div className={css.content} style={contentStyle}>
           {toggle?<Search/>:null}
           {loading?<img className={css.loading} src={require('Image3/31.gif')}/>:null}
           {this.getDom(data)}
         </div>
+
+        {/* 微信/qq 联系方式  */}
         <div className={css.footerWrap} style={data?{display: 'none'}:{}}>
           <div className={css.footer}>
             <div className={css.qq}>
@@ -77,7 +80,6 @@ class Home extends React.Component {
   }
 
   getDom(data) {
-    console.log(data)
     if (!data) return null
     if (data && !data.state) return (
       <div className={css.resultMessage}>{data.message}</div>

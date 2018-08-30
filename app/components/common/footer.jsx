@@ -3,6 +3,7 @@ import css from 'Css2/footer'
 import { connect } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
 
+const noneStyle = {display: 'none'}
 class Footer extends React.Component {
   constructor() {
     super()
@@ -25,9 +26,10 @@ class Footer extends React.Component {
     return (
       <div className={css.container} style={this.props.style?this.props.style:{}}>
         <div className={css.content}>
+          {/* 常用功能 */}
           <ul className={css.list}>
-            {this.list.map(item => (
-              <li onClick={this.click.bind(this, item)} key={item.name}>
+            {this.list.map(item => { return (
+              <li onClick={this.click.bind(this, item)} key={item.name} style={item.disable?noneStyle:{}}>
                 {item.href?
                   <a href={item.href.call(this)}>{item.name}</a>
                 : null}
@@ -38,7 +40,7 @@ class Footer extends React.Component {
                   <a style={disableStyle} href={item.href}>{item.name}</a>:
                   null}
               </li>
-            ))}
+            )})}
           </ul>
           <div className={css.line}/>
           <div className={css.bottom}>
