@@ -23,7 +23,7 @@ class Footer extends React.Component {
   render() {
     let disableStyle = {cursor: 'not-allowed', opacity:'.5'}
     return (
-      <div className={css.container}>
+      <div className={css.container} style={this.props.style?this.props.style:{}}>
         <div className={css.content}>
           <ul className={css.list}>
             {this.list.map(item => (

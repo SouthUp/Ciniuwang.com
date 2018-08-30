@@ -13,6 +13,9 @@ class Navigation extends React.Component {
 
   render() {
     let incomingIndex = this.props.index
+    let { data } = this.props.search
+    let logoStyle = {}
+    if (data) logoStyle = { cursor: 'pointer'}
     let isLogin = false
     if (this.props.view.user) isLogin = true
     let { toggle } = this.props.search
@@ -24,7 +27,7 @@ class Navigation extends React.Component {
             {toggle?(
               <li style={incomingIndex == 0?fontStyle:{}}><Link to={'/'}>在线查词</Link></li>
             ): (
-              <li><Search/></li>
+              <li><Search style={logoStyle}/></li>
             )}
             <li style={incomingIndex == 1?fontStyle:{}}><Link to={'/download'}>客户端下载</Link></li>
           </ul>

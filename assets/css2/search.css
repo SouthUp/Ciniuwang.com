@@ -96,8 +96,11 @@ word-wrap: break-word;
     margin-top: 19px
 }
 
+
 .footerWrap {
-    position: absolute;
+    /* position: absolute; */
+    margin-top: 200px;
+    margin-bottom: 100px;
     bottom: 276px;
     width: 100%;
 }
@@ -116,12 +119,19 @@ word-wrap: break-word;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    
+    position: relative;
 }
 
 .footer > div > img {
     margin-right: 8px;
 }
+
+.footerMessageWrap {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+
 
 .qq {
     margin-right: 23px;
@@ -129,7 +139,6 @@ word-wrap: break-word;
 }
 
 .wechat {
-    position: relative;
     user-select: text;
 }
 
@@ -137,15 +146,11 @@ word-wrap: break-word;
     cursor: pointer;
 }
 
-.wechat > img:nth-child(2) {
+.footer > div > img:nth-child(2) {
     display: none;
 }
 
-.wechat > span {
-    background-image: require('Image3/18.png')
-}
-
-.wechat:hover > .hiddenImg {
+.footer > div:hover > .hiddenImg {
     display: inline;
 }
 

@@ -16,9 +16,10 @@ class Search extends React.Component {
 
   render() {
     let { word } = this.props.search
+    let { style } = this.props
     return (
       <div className={css.frame}>
-        <img src={require('Image3/logo-3.png')} alt=""/>
+        <img onClick={this.clear.bind(this)} style={style || {}} src={require('Image3/logo-3.png')} alt=""/>
         <input type="text" placeholder='支持筛查6个字以内的违禁词'
           onChange={this.input.bind(this)} value={word} onKeyPress={this.key.bind(this)}/>
         <span onClick={this.search.bind(this)}>筛查</span>
@@ -64,6 +65,10 @@ class Search extends React.Component {
 
   clearText() {
     this.setState({text: ''})
+  }
+
+  clear() {
+    store.dispatch(action.clear())
   }
 }
 
