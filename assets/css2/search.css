@@ -106,7 +106,7 @@ word-wrap: break-word;
 
 
 .footerWrap {
-    margin-top: 200px;
+    margin-top: 290px;
     margin-bottom: 100px;
     width: 100%;
     box-sizing: border-box;
@@ -202,9 +202,32 @@ word-wrap: break-word;
     
 }
 
+.suggest {
+    font-size: 14px;
+    color: rgba(0, 0, 0, .54);
+    /* padding-left: 15px; */
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 704px!important;
+    padding: 0 0 0 74px;
+    margin: 20px 0 0;
+}
+
+.suggest > div {
+    line-height: 22px;
+}
+
+.suggest > div:nth-child(1) {
+    margin-bottom: 5px;
+}
+
 @media screen and (max-width: 750px) {
     .frame {
         width: 100%;
+    }
+
+    .suggest {
+        width: 100%!important;
     }
 }
 
@@ -232,6 +255,11 @@ word-wrap: break-word;
     .footer > div {
         margin-bottom: 15px;
     }
+
+    .suggest {
+        padding-left: 53px;
+        width: 100%!important;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -241,6 +269,11 @@ word-wrap: break-word;
 
     .frame input {
         padding-left: 6px;
+    }
+
+    .suggest {
+        padding-left: 15px;
+        width: 100%!important;
     }
 
     

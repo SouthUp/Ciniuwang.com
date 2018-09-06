@@ -22,7 +22,8 @@ class Home extends React.Component {
     let { width, height } = this.props.view
     let { toggle, loading, data } = this.props.search
     let footerStyle = {}
-    if (!data && height > 911) footerStyle={position: 'fixed', bottom: '0px'}
+    if (!data && height > 911) footerStyle={position: 'fixed', bottom: '-160px'}
+    else if (!data && width > 600) footerStyle = { height: '240px'}
     if (data) footerStyle = {display: 'none'}
     let contentStyle = { paddingTop: '100px'}
     let mainStyle = { width, height, position: 'relative'}
@@ -36,6 +37,13 @@ class Home extends React.Component {
         {/* 搜索框/加载动画/搜索结果 */}
         <div className={css.content} style={contentStyle}>
           {toggle?<Search/>:null}
+          {toggle?<div className={css.suggest}>
+            <div>更多功能敬请下载安装词牛客户端：</div>
+            <div>1. 支持查询图片中的违禁词</div>
+            <div>2. 支持批量检索文档</div>
+            <div>3. 支持批量检索图片</div>
+            <div>4. 支持word文档编辑实时检索违禁词</div>
+          </div>:null}
           {loading?<img className={css.loading} src={require('Image3/31.gif')}/>:null}
           {this.getDom(data)}
         </div>
