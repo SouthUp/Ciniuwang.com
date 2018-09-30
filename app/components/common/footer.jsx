@@ -84,7 +84,7 @@ class Footer extends React.Component {
       }
     }
 
-    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale) ) url += `/${sale}`
+    if (sale && ['cnsa1', 'cnsa2', 'cnsa3', 'cnsa4', 'cnsa5', 'cnsa6', 'cnsa7', 'cnsa8'].includes(sale) ) url += `/${sale}`
 
     url += '/词牛客户端.zip'
 

@@ -25,7 +25,7 @@ class Home extends React.Component {
           <div className={css.contentMain}>
             <div className={css.contentLeft}>
               {/* 软件标题 */}
-              <title>词牛套件 2.0.0</title>
+              <title>词牛套件 2.0.2</title>
               {/* 软件描述 */}
               <div className={css.description}>
                 为文案与美工深度定制的word、excel套件与图片批量自动扫描工具。一键安装，不需要培训即可便捷使用
@@ -80,7 +80,7 @@ class Home extends React.Component {
       }
     }
 
-    if (sale && ['cnsa1', 'cnsa2', 'cnsa3'].includes(sale)) url += `/${sale}`
+    if (sale && ['cnsa1', 'cnsa2', 'cnsa3', 'cnsa4', 'cnsa5', 'cnsa6', 'cnsa7', 'cnsa8'].includes(sale)) url += `/${sale}`
 
     url += '/词牛客户端.zip'
 
